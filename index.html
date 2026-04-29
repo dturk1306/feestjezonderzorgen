@@ -35,7 +35,7 @@
   "description": "Interactieve quiz en checklist voor gastheren die een feestje organiseren waar een kind met pinda-allergie komt.",
   "url": "https://daanturk.github.io/feestje-zonder-zorgen/",
   "datePublished": "2026-04-22",
-  "dateModified": "2026-04-26",
+  "dateModified": "2026-04-29",
   "inLanguage": "nl-NL",
   "about": {
     "@type": "Thing",
@@ -62,7 +62,7 @@
         "name": "Wat betekent 'kan sporen bevatten van pinda' op de verpakking?",
         "acceptedAnswer": {
           "@type": "Answer",
-          "text": "Dat betekent dat het product in een fabriek is gemaakt waar ook met pinda wordt gewerkt, en er dus kleine hoeveelheden in terecht kunnen komen. Voor iemand met een ernstige pinda-allergie is dit niet veilig om te eten."
+          "text": "Dit is een vrijwillige waarschuwing van de fabrikant: pinda zit niet in de ingrediënten, maar minieme kruisbesmetting tijdens productie is niet uitgesloten. Iets anders dan 'Bevat pinda' in de ingrediëntenlijst — dat is een harde NEE. Het officiële advies van Voedingscentrum en Nederlands Anafylaxis Netwerk is: bij ernstige allergie liever vermijden. In de praktijk bepalen de ouders wat de drempel is voor hún kind — bel ze daarom altijd voor de boodschappen."
         }
       },
       {
@@ -944,7 +944,7 @@ footer a { color: var(--outline); }
         </h4>
         <ul>
           <li><input type="checkbox" id="c1"><label for="c1">Bel even met de ouders én de tiener: wat kan wél, wat absoluut niet?</label></li>
-          <li><input type="checkbox" id="c2"><label for="c2">Check verpakkingen op "kan sporen bevatten van pinda/noten" — die laat je weg</label></li>
+          <li><input type="checkbox" id="c2"><label for="c2">Lees etiketten: "Bevat pinda/noten" = altijd weglaten. "Kan sporen bevatten" = officieel advies is vermijden — in de praktijk: even afstemmen met de ouders</label></li>
           <li><input type="checkbox" id="c3"><label for="c3">Twijfel je over een product? Stuur een foto van de ingrediënten naar de ouders</label></li>
         </ul>
       </div>
@@ -1044,7 +1044,9 @@ footer a { color: var(--outline); }
 
     <details class="faq">
       <summary>Wat betekent "kan sporen bevatten van pinda"?</summary>
-      <p>Dat betekent dat het product in een fabriek is gemaakt waar ook met pinda wordt gewerkt, en er dus kleine hoeveelheden in terecht kunnen komen. Voor iemand met een ernstige pinda-allergie is dit niet veilig om te eten.</p>
+      <p>Dit is een vrijwillige waarschuwing: pinda zit <strong>niet</strong> in de ingrediënten, maar minieme kruisbesmetting tijdens productie is niet uitgesloten. Iets anders dan <em>"Bevat pinda"</em> in de ingrediëntenlijst — dat is een harde NEE.</p>
+      <p><strong>Officiële richtlijn:</strong> Voedingscentrum en het Nederlands Anafylaxis Netwerk adviseren bij ernstige allergie om producten met "kan sporen bevatten" te vermijden, omdat de drempel per persoon verschilt en niet voorspelbaar is.</p>
+      <p><strong>In de praktijk:</strong> de ouders bepalen wat veilig is voor hún kind. Bel ze daarom altijd vóór je inkopen doet — dan weet je zeker welke merken oké zijn. (Bronnen: <a href="https://www.voedingscentrum.nl/encyclopedie/allergenen-op-het-etiket.aspx" target="_blank" rel="noopener">Voedingscentrum — Allergenen op het etiket</a>, <a href="https://www.anafylaxis.nl" target="_blank" rel="noopener">Nederlands Anafylaxis Netwerk</a>)</p>
     </details>
 
     <details class="faq">
@@ -1098,7 +1100,7 @@ footer a { color: var(--outline); }
 </main>
 
 <footer>
-  Gemaakt door Daan Turk · <a href="mailto:daanturk@gmail.com">Feedback? Mail me</a> · Versie 2.0
+  Gemaakt door Daan Turk · <a href="mailto:daanturk@gmail.com">Feedback? Mail me</a> · Versie 3.0
 </footer>
 </div>
 
@@ -1111,7 +1113,7 @@ const QUESTIONS = [
     q: "Je organiseert een verjaardag. Er komt een tiener met een ernstige pinda-allergie. Wat doe je als eerste?",
     options: [
       { text: "Pinda-vrije snacks kopen en hopen dat het goed gaat", correct: false,
-        fb: "Goed bedoeld — maar 'pinda-vrij' op het pak is niet genoeg. 'Kan sporen bevatten' blijft een risico, en verborgen bronnen (sauzen, koekjes, gebak) worden vaak gemist." },
+        fb: "Goed bedoeld, maar niet genoeg. Verborgen bronnen (sauzen, koekjes, gebak) worden vaak gemist en 'Bevat pinda' kan in de ingrediëntenlijst zitten zonder dat het opvalt. De ouders bellen is altijd stap 1." },
       { text: "De ouders bellen en vragen wat concreet wél en niet kan", correct: true,
         fb: "Ja. Dit is de belangrijkste stap. Elke allergie is anders. Ouders weten precies welke merken veilig zijn en waar hun kind op gereageerd heeft. Emma (13): 'Mijn ouders en ik betrekken bij wat er gegeten wordt — dat geeft rust.'" },
       { text: "Haar zelf een apart bakje laten meenemen", correct: false,
@@ -1121,12 +1123,12 @@ const QUESTIONS = [
   {
     q: "Je staat in de supermarkt. Op het pak koekjes staat: 'Kan sporen bevatten van noten'. Veilig?",
     options: [
-      { text: "Ja, want er staat geen pinda in de ingrediënten", correct: false,
-        fb: "Nee. 'Kan sporen bevatten' betekent: in dezelfde fabriek worden ook pinda/noten verwerkt. Voor iemand met ernstige allergie kan zelfs een micro-hoeveelheid levensgevaarlijk zijn." },
-      { text: "Nee, niet kopen voor dit feest", correct: true,
-        fb: "Precies. 'Kan sporen bevatten' = vermijden. Kies een product waarvan de fabrikant expliciet aangeeft dat er geen kruisbesmetting mogelijk is, of bel de fabrikant." },
+      { text: "Ja, want er staat geen pinda in de ingrediënten", correct: true,
+        fb: "Klopt — mits je het etiket goed leest. 'Bevat pinda/noten' in de ingrediëntenlijst = harde NEE. 'Kan sporen bevatten' is een vrijwillige waarschuwing van de fabrikant over mogelijke kruisbesmetting. Officieel advies (Voedingscentrum, Anafylaxis Netwerk) is: bij ernstige allergie liever vermijden. In de praktijk bepalen de ouders wat veilig is voor hún kind — bel ze daarom altijd voor de boodschappen." },
+      { text: "Nee, niet kopen voor dit feest", correct: false,
+        fb: "Begrijpelijk én volgens de officiële richtlijn niet onterecht — Voedingscentrum en Anafylaxis Netwerk adviseren bij ernstige allergie om 'kan sporen bevatten' te vermijden. Maar het is iets anders dan 'Bevat pinda' (= ingrediënt = altijd vermijden). Bel de ouders: zij kennen de drempel van hún kind." },
       { text: "Oké als je het uit de verpakking haalt en in een eigen bakje doet", correct: false,
-        fb: "Het product zelf kan al besmet zijn — overhevelen verandert dat niet." }
+        fb: "Overhevelen helpt niet: als er noten in zouden zitten, zit het in het product zelf. Etiket leest altijd voor — niet de presentatie." }
     ]
   },
   {
@@ -1158,8 +1160,8 @@ const QUESTIONS = [
         fb: "Gevaarlijk. Bij anafylaxie telt elke minuut. Afwachten is het grootste risico." },
       { text: "Haar ouders bellen voor advies", correct: false,
         fb: "Niet de eerste stap. Ouders bellen kan, maar áltijd ná de EpiPen + 112. Ambulance onderweg = ouders gerust." },
-      { text: "EpiPen toedienen in het bovenbeen, 3 sec vasthouden, daarna 112 bellen", correct: true,
-        fb: "Ja. Bij twijfel: altijd geven. Een EpiPen is niet schadelijk als achteraf onnodig; wachten met geven kan wél fataal zijn. Ook als het beter lijkt te gaan: 112 en controle in het ziekenhuis, want de reactie kan terugkomen." }
+      { text: "Éérst EpiPen toedienen in het bovenbeen (3 sec vasthouden), dáárna 112 bellen", correct: true,
+        fb: "Ja. Volgorde = EpiPen → 112 → ouders. Bij twijfel: altijd geven. Een EpiPen is niet schadelijk als achteraf onnodig; wachten met geven kan wél fataal zijn. Ook als het beter lijkt te gaan: bel 112 en zorg voor controle in het ziekenhuis, want de reactie kan binnen enkele uren terugkomen (bifasische reactie)." }
     ]
   }
 ];
