@@ -5,15 +5,15 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
 <!-- SEO -->
-<title>Feestje zonder zorgen — ook bij een pinda-allergie</title>
-<meta name="description" content="Organiseer je een feestje waar een kind met pinda-allergie komt? Doe de 3-minuten quiz en krijg de gastheer-checklist. Gemaakt mét tieners.">
+<title>Feestje zonder zorg — ook bij een pinda-allergie</title>
+<meta name="description" content="Organiseer je een feestje waar een tiener met pinda-allergie komt? Doe de 3-minuten quiz en krijg de gastheer-checklist. Gemaakt mét tieners.">
 <link rel="canonical" href="https://daanturk.github.io/feestje-zonder-zorgen/">
 <meta name="robots" content="index,follow">
-<meta name="author" content="Feestje zonder zorgen">
+<meta name="author" content="Feestje zonder zorg">
 
 <!-- Social / OpenGraph -->
-<meta property="og:title" content="Feestje zonder zorgen — ook bij een pinda-allergie">
-<meta property="og:description" content="Doe de 3-minuten quiz voor gastheren & gastvrouwen. Ontdek wat wél en niet werkt bij een kind met pinda-allergie op je feestje.">
+<meta property="og:title" content="Feestje zonder zorg — ook bij een pinda-allergie">
+<meta property="og:description" content="Doe de 3-minuten quiz voor gastheren & gastvrouwen. Ontdek wat wél en niet werkt bij een tiener met pinda-allergie op je feestje.">
 <meta property="og:url" content="https://daanturk.github.io/feestje-zonder-zorgen/">
 <meta property="og:type" content="website">
 <meta property="og:locale" content="nl_NL">
@@ -31,8 +31,8 @@
 {
   "@context": "https://schema.org",
   "@type": "WebPage",
-  "name": "Feestje zonder zorgen — ook bij een pinda-allergie",
-  "description": "Interactieve quiz en checklist voor gastheren die een feestje organiseren waar een kind met pinda-allergie komt.",
+  "name": "Feestje zonder zorg — ook bij een pinda-allergie",
+  "description": "Interactieve quiz en checklist voor gastheren die een feestje organiseren waar een tiener met pinda-allergie komt.",
   "url": "https://daanturk.github.io/feestje-zonder-zorgen/",
   "datePublished": "2026-04-22",
   "dateModified": "2026-04-29",
@@ -735,6 +735,36 @@ details.faq a { color: var(--primary-dark); }
 }
 .steun-input:focus { border-color: var(--primary); outline: none; }
 
+.steun-ig {
+  margin-top: var(--spacing-lg);
+  padding-top: var(--spacing-md);
+  border-top: 1px dashed var(--outline-variant);
+}
+.steun-ig-label {
+  font-size: 14px;
+  color: var(--on-surface-variant);
+  margin: 0 0 10px;
+}
+.ig-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  padding: 12px 20px;
+  border-radius: var(--radius-full);
+  text-decoration: none;
+  font-weight: 700;
+  font-size: 15px;
+  color: #fff;
+  background: linear-gradient(45deg, #f09433 0%, #e6683c 25%, #dc2743 50%, #cc2366 75%, #bc1888 100%);
+  min-height: 44px;
+  transition: transform .15s, box-shadow .15s;
+  box-shadow: 0 4px 14px rgba(220,39,67,.25);
+}
+.ig-btn:hover { transform: translateY(-1px); box-shadow: 0 6px 18px rgba(220,39,67,.35); }
+.ig-btn:active { transform: translateY(0); }
+.ig-btn:focus-visible { outline: 3px solid var(--primary); outline-offset: 3px; }
+
 /* ===== EMERGENCY CARD ===== */
 .emergency-card {
   background: var(--primary);
@@ -745,8 +775,14 @@ details.faq a { color: var(--primary-dark); }
   overflow: hidden;
   cursor: pointer;
   transition: transform .15s;
+  border: none;
+  width: 100%;
+  text-align: left;
+  font-family: inherit;
+  display: block;
 }
 .emergency-card:active { transform: scale(0.98); }
+.emergency-card:focus-visible { outline: 3px solid var(--primary-dark); outline-offset: 3px; }
 .emergency-card::after {
   content: "";
   position: absolute;
@@ -768,6 +804,111 @@ details.faq a { color: var(--primary-dark); }
   z-index: 1;
   font-variation-settings: 'FILL' 1;
 }
+
+/* ===== EMERGENCY MODAL ===== */
+.em-modal[hidden] { display: none; }
+.em-modal {
+  position: fixed; inset: 0;
+  z-index: 200;
+  display: flex; align-items: flex-end; justify-content: center;
+}
+.em-backdrop {
+  position: absolute; inset: 0;
+  background: rgba(30,27,24,.55);
+  backdrop-filter: blur(2px);
+}
+.em-dialog {
+  position: relative;
+  background: #fff;
+  width: 100%;
+  max-width: var(--maxw);
+  max-height: 92vh;
+  overflow-y: auto;
+  border-radius: var(--radius-xl) var(--radius-xl) 0 0;
+  padding: var(--spacing-lg);
+  animation: emSlide .25s ease;
+}
+@keyframes emSlide { from { transform: translateY(20px); opacity: 0 } to { transform: none; opacity: 1 } }
+@media (min-width: 600px) {
+  .em-modal { align-items: center; }
+  .em-dialog { border-radius: var(--radius-xl); max-height: 88vh; }
+}
+.em-close {
+  position: absolute; top: 12px; right: 12px;
+  width: 40px; height: 40px;
+  border-radius: var(--radius-full);
+  border: none; background: var(--surface-container);
+  cursor: pointer;
+  display: flex; align-items: center; justify-content: center;
+}
+.em-close .material-symbols-outlined { font-size: 22px; color: var(--on-surface); }
+.em-close:focus-visible { outline: 3px solid var(--primary); outline-offset: 2px; }
+
+.em-head { text-align: center; margin: 0 0 var(--spacing-md); padding-right: 32px; }
+.em-head-icon {
+  font-size: 44px;
+  color: var(--primary);
+  font-variation-settings: 'FILL' 1;
+  display: block; margin: 0 auto 4px;
+}
+.em-head h2 { color: var(--primary); margin: 4px 0; }
+.em-sub { color: var(--on-surface-variant); margin: 0; font-size: 15px; }
+
+.em-steps {
+  list-style: none;
+  padding: 0; margin: 0;
+  display: flex; flex-direction: column; gap: var(--spacing-md);
+}
+.em-steps > li {
+  display: flex; gap: 14px;
+  background: var(--surface-container-low);
+  border-radius: var(--radius-lg);
+  padding: var(--spacing-md);
+  border-left: 4px solid var(--primary);
+}
+.em-step-num {
+  flex-shrink: 0;
+  width: 36px; height: 36px;
+  border-radius: var(--radius-full);
+  background: var(--primary); color: #fff;
+  display: flex; align-items: center; justify-content: center;
+  font-weight: 800; font-size: 18px;
+}
+.em-step-body { flex: 1; }
+.em-step-body h3 { font-size: 17px; margin: 4px 0 6px; color: var(--on-surface); }
+.em-step-body p { margin: 0 0 8px; font-size: 15px; line-height: 1.5; color: var(--on-surface); }
+.em-step-body p:last-child { margin-bottom: 0; }
+.em-note {
+  font-size: 13px !important;
+  color: var(--on-surface-variant) !important;
+  font-style: italic;
+}
+
+.em-call-btn {
+  display: inline-flex;
+  align-items: center; justify-content: center;
+  gap: 8px;
+  background: var(--primary);
+  color: #fff;
+  padding: 14px 24px;
+  border-radius: var(--radius-lg);
+  text-decoration: none;
+  font-weight: 700;
+  font-size: 17px;
+  font-family: inherit;
+  min-height: 52px;
+  width: 100%;
+  margin-top: 4px;
+  box-shadow: 0 4px 16px rgba(193,85,59,.25);
+}
+.em-call-btn:hover { background: var(--primary-dark); }
+.em-call-btn:active { transform: translateY(1px); }
+.em-call-btn .material-symbols-outlined { font-size: 22px; }
+
+.em-footer { margin-top: var(--spacing-md); padding-top: var(--spacing-sm); border-top: 1px solid var(--outline-variant); }
+.em-footer a { color: var(--on-surface-variant); }
+
+body.em-open { overflow: hidden; }
 
 /* ===== SOURCES / FOOTER ===== */
 .sources {
@@ -841,7 +982,7 @@ footer a { color: var(--outline); }
     <span class="material-symbols-outlined">shield_with_heart</span>
     Feestje zonder zorgen
   </div>
-  <button class="topbar-emergency" aria-label="Noodgeval" onclick="document.getElementById('emergency').scrollIntoView({behavior:'smooth'})">
+  <button class="topbar-emergency" id="topbar-emergency" aria-label="Noodgeval — open protocol" aria-haspopup="dialog" aria-controls="emergency-modal">
     <span class="material-symbols-outlined">emergency</span>
   </button>
 </header>
@@ -855,8 +996,8 @@ footer a { color: var(--outline); }
       <span class="material-symbols-outlined" style="font-size:16px">group</span>
       Gemaakt mét tieners met pinda-allergie · April 2026
     </div>
-    <h1>Feestje zonder zorgen — ook bij een pinda-allergie</h1>
-    <p class="hero-sub">Je organiseert een feestje. Er komt een kind of tiener met een ernstige pinda-allergie. In <strong>3 minuten</strong> weet je precies wat wél en niet werkt — getest door de tieners zelf.</p>
+    <h1>Feestje zonder zorg: ook bij een pinda-allergie!</h1>
+    <p class="hero-sub">Je organiseert een feestje. Er komt een tiener met een ernstige pinda-allergie. In <strong>3 minuten</strong> weet je precies wat wél en niet werkt — getest door de tieners zelf.</p>
     <div class="hero-cta-row">
       <a href="#quiz" class="btn-primary">
         <span class="material-symbols-outlined" style="font-size:20px">quiz</span>
@@ -868,29 +1009,31 @@ footer a { color: var(--outline); }
 
   <!-- PROBLEEM-BLOK — Bento Grid -->
   <section class="section">
-    <h2 class="section-title">Waarom een quiz en niet gewoon 'pindavrij kopen'?</h2>
-    <p class="section-subtitle">Omdat de valkuilen zitten in wat je <em>niet</em> weet.</p>
+    <h2 class="section-title">Waarom een pinda-allergie niet onderschat mag worden</h2>
+    <p class="section-subtitle">De valkuilen zitten in wat je <em>niet</em> weet.</p>
 
     <div class="bento">
       <div class="bento-item card-teal">
         <div>
-          <div class="bento-num">1 op 50</div>
-          <div class="bento-txt">kinderen heeft een voedselallergie. Pinda is een van de meest voorkomende oorzaken van ernstige reacties.</div>
+          <div class="bento-num">~1%</div>
+          <div class="bento-txt">van de kinderen onder 5 in westerse landen heeft pinda-allergie. Pinda is dé meest voorkomende oorzaak van anafylaxie bij kinderen.</div>
         </div>
-        <div class="caption" style="color:var(--outline);margin-top:8px">Bron: Voedingscentrum</div>
+        <div class="caption" style="color:var(--outline);margin-top:8px"><a href="https://www.voedselallergie.nl/allergenen/pinda/" target="_blank" rel="noopener" style="color:var(--outline);text-decoration:underline">Bron: Stichting Voedselallergie</a></div>
       </div>
       <div class="bento-item card-terracotta">
         <div>
-          <div class="bento-num">&lt; 15 min</div>
-          <div class="bento-txt">kan het duren voordat een milde reactie omslaat naar anafylaxie — keelzwelling, bloeddrukdaling.</div>
+          <div class="bento-num">Minuten</div>
+          <div class="bento-txt">tot 1-2 uur na contact kan een reactie omslaan naar anafylaxie — keelzwelling, bloeddrukdaling. Hoe sneller de reactie, hoe ernstiger het verloop.</div>
         </div>
+        <div class="caption" style="color:var(--outline);margin-top:8px"><a href="https://www.voedselallergie.nl/anafylaxie" target="_blank" rel="noopener" style="color:var(--outline);text-decoration:underline">Bron: Stichting Voedselallergie — Anafylaxie</a></div>
       </div>
       <div class="bento-item full" style="background:var(--surface-alt)">
         <div style="display:flex;align-items:center;gap:12px">
           <span class="material-symbols-outlined bento-icon" style="color:var(--primary);font-variation-settings:'FILL' 1">feedback</span>
           <div>
-            <div class="bento-num" style="font-size:22px">80%</div>
-            <div class="bento-txt">van ouders noemde 'goed bedoeld maar onwetend' als grootste risico op feestjes.</div>
+            <div class="bento-num" style="font-size:22px">"Goed bedoeld, maar onwetend"</div>
+            <div class="bento-txt">noemden de ouders die we spraken als grootste risico op feestjes — niet de allergie zelf.</div>
+            <div class="caption" style="color:var(--outline);margin-top:6px">Bron: discovery-interview, april 2026</div>
           </div>
         </div>
       </div>
@@ -984,14 +1127,62 @@ footer a { color: var(--outline); }
     </div>
   </section>
 
-  <!-- EMERGENCY CARD -->
+  <!-- EMERGENCY CARD — opent modaal met protocol -->
   <section class="section">
-    <div class="emergency-card" onclick="document.getElementById('emergency').scrollIntoView({behavior:'smooth'})">
+    <button type="button" class="emergency-card" id="emergency-open" aria-haspopup="dialog" aria-controls="emergency-modal">
       <span class="material-symbols-outlined">warning</span>
       <h3>Noodgeval? Klik hier</h3>
-      <p>Directe stappen bij een allergische reactie: EpiPen → 112 → ouders.</p>
-    </div>
+      <p>Direct het 3-stappenprotocol: EpiPen → 112 → ouders.</p>
+    </button>
   </section>
+
+  <!-- EMERGENCY MODAL -->
+  <div class="em-modal" id="emergency-modal" role="dialog" aria-modal="true" aria-labelledby="em-title" hidden>
+    <div class="em-backdrop" id="em-backdrop"></div>
+    <div class="em-dialog" role="document">
+      <button type="button" class="em-close" id="em-close" aria-label="Sluiten">
+        <span class="material-symbols-outlined">close</span>
+      </button>
+      <div class="em-head">
+        <span class="material-symbols-outlined em-head-icon">emergency</span>
+        <h2 id="em-title">Bij een allergische reactie</h2>
+        <p class="em-sub">Volg dit protocol — in deze volgorde. Bij twijfel: altijd geven.</p>
+      </div>
+
+      <ol class="em-steps">
+        <li>
+          <div class="em-step-num">1</div>
+          <div class="em-step-body">
+            <h3>EpiPen toedienen</h3>
+            <p><strong>Blauwe dop eraf.</strong> Oranje punt stevig in het bovenbeen drukken (mag door kleding heen). <strong>3 seconden vasthouden.</strong> Daarna been masseren.</p>
+            <p class="em-note">Twijfel? Geef hem. Een onnodig gegeven EpiPen is niet schadelijk. Wachten kan dat wel zijn.</p>
+          </div>
+        </li>
+        <li>
+          <div class="em-step-num">2</div>
+          <div class="em-step-body">
+            <h3>112 bellen</h3>
+            <p>Zeg: <em>"Anafylactische reactie, EpiPen toegediend"</em> + adres. De ambulance moet altijd komen — ook als het beter lijkt te gaan (de reactie kan binnen uren terugkomen).</p>
+            <a href="tel:112" class="em-call-btn">
+              <span class="material-symbols-outlined">call</span>
+              Bel 112 nu
+            </a>
+          </div>
+        </li>
+        <li>
+          <div class="em-step-num">3</div>
+          <div class="em-step-body">
+            <h3>Ouders bellen</h3>
+            <p>Pas <em>nadat</em> de EpiPen is toegediend en 112 gebeld. Geef adres + ziekenhuis door zodra dat bekend is.</p>
+          </div>
+        </li>
+      </ol>
+
+      <div class="em-footer">
+        <p class="caption" style="color:var(--on-surface-variant)">Bron: <a href="https://www.lumc.nl/afdelingen/spoedeisende-hulp/diagnoses-en-behandelingen/het-gebruik-van-de-epipen/" target="_blank" rel="noopener">LUMC — Het gebruik van de EpiPen</a> · <a href="https://www.voedselallergie.nl/anafylaxie" target="_blank" rel="noopener">Stichting Voedselallergie — Anafylaxie</a></p>
+      </div>
+    </div>
+  </div>
 
   <!-- SOCIAL PROOF — wat werkt wél/niet -->
   <section class="section">
@@ -1025,7 +1216,7 @@ footer a { color: var(--outline); }
         <button class="share-btn" id="copy-link" aria-label="Kopieer link">
           <span class="material-symbols-outlined">link</span>
         </button>
-        <a href="mailto:?subject=Feestje%20zonder%20zorgen%20%E2%80%94%20quiz%20voor%20gastheren&body=Handige%203-minuten%20quiz%20voor%20als%20je%20een%20feestje%20organiseert%20waar%20een%20kind%20met%20pinda-allergie%20komt%3A%20https%3A%2F%2Fdaanturk.github.io%2Ffeestje-zonder-zorgen%2F%3Futm_source%3Dshare%26utm_medium%3Demail%26utm_campaign%3Dfeestje-zonder-zorgen"
+        <a href="mailto:?subject=Feestje%20zonder%20zorg%20%E2%80%94%20quiz%20voor%20gastheren&body=Handige%203-minuten%20quiz%20voor%20als%20je%20een%20feestje%20organiseert%20waar%20een%20tiener%20met%20pinda-allergie%20komt%3A%20https%3A%2F%2Fdaanturk.github.io%2Ffeestje-zonder-zorgen%2F%3Futm_source%3Dshare%26utm_medium%3Demail%26utm_campaign%3Dfeestje-zonder-zorgen"
            class="share-btn" aria-label="Deel via e-mail">
           <span class="material-symbols-outlined">mail</span>
         </a>
@@ -1073,7 +1264,7 @@ footer a { color: var(--outline); }
   <!-- STEUN-BLOK -->
   <section class="section hide-print" id="steun">
     <div class="steun-card">
-      <h3>Steun feestjes zonder zorgen</h3>
+      <h3>Steun Feestje zonder zorg</h3>
       <p style="color:var(--on-surface-variant);margin:4px 0 0;font-size:15px">Hoe meer mensen dit weten, hoe veiliger het wordt.</p>
       <div class="steun-teller" id="steun-teller">503</div>
       <div class="steun-namen" id="steun-namen">Sophie, Anoniem, Thomas, Bas en 499 anderen steunen dit.</div>
@@ -1085,6 +1276,15 @@ footer a { color: var(--outline); }
         </button>
       </div>
       <div id="steun-bedankt" style="display:none;font-size:18px;font-weight:700;color:var(--success);margin-top:12px"></div>
+
+      <div class="steun-ig">
+        <p class="steun-ig-label">Volg ons voor tips, verhalen en updates:</p>
+        <a href="https://www.instagram.com/feestjezonderzorgen/" target="_blank" rel="noopener" class="ig-btn" aria-label="Volg @feestjezonderzorgen op Instagram">
+          <svg viewBox="0 0 24 24" width="20" height="20" fill="currentColor" aria-hidden="true"><path d="M12 2.2c3.2 0 3.6 0 4.8.07 1.2.05 1.8.25 2.2.4.6.23 1 .5 1.4.9.4.4.7.8.9 1.4.16.4.36 1 .4 2.2.07 1.2.07 1.6.07 4.8s0 3.6-.07 4.8c-.05 1.2-.25 1.8-.4 2.2-.23.6-.5 1-.9 1.4-.4.4-.8.7-1.4.9-.4.16-1 .36-2.2.4-1.2.07-1.6.07-4.8.07s-3.6 0-4.8-.07c-1.2-.05-1.8-.25-2.2-.4-.6-.23-1-.5-1.4-.9-.4-.4-.7-.8-.9-1.4-.16-.4-.36-1-.4-2.2C2.2 15.6 2.2 15.2 2.2 12s0-3.6.07-4.8c.05-1.2.25-1.8.4-2.2.23-.6.5-1 .9-1.4.4-.4.8-.7 1.4-.9.4-.16 1-.36 2.2-.4C8.4 2.2 8.8 2.2 12 2.2zm0 1.95c-3.15 0-3.52.01-4.75.07-1.05.05-1.62.22-2 .37-.5.2-.86.43-1.24.81-.38.38-.62.74-.81 1.24-.15.38-.32.95-.37 2-.06 1.23-.07 1.6-.07 4.75s.01 3.52.07 4.75c.05 1.05.22 1.62.37 2 .2.5.43.86.81 1.24.38.38.74.62 1.24.81.38.15.95.32 2 .37 1.23.06 1.6.07 4.75.07s3.52-.01 4.75-.07c1.05-.05 1.62-.22 2-.37.5-.2.86-.43 1.24-.81.38-.38.62-.74.81-1.24.15-.38.32-.95.37-2 .06-1.23.07-1.6.07-4.75s-.01-3.52-.07-4.75c-.05-1.05-.22-1.62-.37-2-.2-.5-.43-.86-.81-1.24-.38-.38-.74-.62-1.24-.81-.38-.15-.95-.32-2-.37-1.23-.06-1.6-.07-4.75-.07zm0 3.32a4.53 4.53 0 1 1 0 9.06 4.53 4.53 0 0 1 0-9.06zm0 1.95a2.58 2.58 0 1 0 0 5.16 2.58 2.58 0 0 0 0-5.16zm5.78-2.16a1.06 1.06 0 1 1-2.12 0 1.06 1.06 0 0 1 2.12 0z"/></svg>
+          <span>Volg @feestjezonderzorgen</span>
+        </a>
+        <p class="caption" style="color:var(--on-surface-variant);margin-top:8px">Account in opbouw — pagina volgt binnenkort.</p>
+      </div>
     </div>
   </section>
 
@@ -1092,15 +1292,17 @@ footer a { color: var(--outline); }
   <div class="sources">
     <strong>Bronnen:</strong><br>
     Discovery-interview met een tiener (13) en ouders, april 2026 (geanonimiseerd) ·
-    <a href="https://www.voedingscentrum.nl/encyclopedie/pinda-allergie.aspx" target="_blank" rel="noopener">Voedingscentrum — Pinda-allergie</a> ·
-    <a href="https://www.anafylaxisnetwerk.nl/" target="_blank" rel="noopener">Nederlands Anafylaxis Netwerk</a><br>
-    Laatste update: 26 april 2026 · Dit is een prototype ter validatie — geen medisch advies.
+    <a href="https://www.voedselallergie.nl/allergenen/pinda/" target="_blank" rel="noopener">Stichting Voedselallergie — Pinda</a> ·
+    <a href="https://www.voedselallergie.nl/anafylaxie" target="_blank" rel="noopener">Stichting Voedselallergie — Anafylaxie</a> ·
+    <a href="https://www.voedingscentrum.nl/encyclopedie/allergenen-op-het-etiket.aspx" target="_blank" rel="noopener">Voedingscentrum — Allergenen op het etiket</a> ·
+    <a href="https://www.lumc.nl/afdelingen/spoedeisende-hulp/diagnoses-en-behandelingen/het-gebruik-van-de-epipen/" target="_blank" rel="noopener">LUMC — EpiPen-gebruik</a><br>
+    Laatste update: 29 april 2026 · Dit is een prototype ter validatie — geen medisch advies.
   </div>
 
 </main>
 
 <footer>
-  Gemaakt door Daan Turk · <a href="mailto:daanturk@gmail.com">Feedback? Mail me</a> · Versie 3.0
+  Gemaakt door Daan Turk · <a href="mailto:daanturk@gmail.com">Feedback? Mail me</a> · Versie 4.0
 </footer>
 </div>
 
@@ -1114,8 +1316,8 @@ const QUESTIONS = [
     options: [
       { text: "Pinda-vrije snacks kopen en hopen dat het goed gaat", correct: false,
         fb: "Goed bedoeld, maar niet genoeg. Verborgen bronnen (sauzen, koekjes, gebak) worden vaak gemist en 'Bevat pinda' kan in de ingrediëntenlijst zitten zonder dat het opvalt. De ouders bellen is altijd stap 1." },
-      { text: "De ouders bellen en vragen wat concreet wél en niet kan", correct: true,
-        fb: "Ja. Dit is de belangrijkste stap. Elke allergie is anders. Ouders weten precies welke merken veilig zijn en waar hun kind op gereageerd heeft. Emma (13): 'Mijn ouders en ik betrekken bij wat er gegeten wordt — dat geeft rust.'" },
+      { text: "De ouders en/of tiener bellen en vragen wat concreet wél en niet kan", correct: true,
+        fb: "Ja. Dit is de belangrijkste stap. Elke allergie is anders. Ouders en tiener weten precies welke merken veilig zijn en waar er eerder een reactie op kwam. Emma (13): 'Mijn ouders en ik betrekken bij wat er gegeten wordt — dat geeft rust.'" },
       { text: "Haar zelf een apart bakje laten meenemen", correct: false,
         fb: "Dat is háár standaard noodplan, niet jouw rol als gastheer. Als jij het serieus neemt, voelt ze zich welkom in plaats van uitzonderlijk." }
     ]
@@ -1138,7 +1340,7 @@ const QUESTIONS = [
         fb: "Goed bedoeld, maar precies wat Emma liever niet heeft. Citaat: 'Ik word er elke 5 seconden aan herinnerd. Ik wil gewoon puber zijn.'" },
       { text: "Niks zeggen, dan denkt ze er zelf niet aan", correct: false,
         fb: "Ook niet ideaal. Ze wil wél weten dat je het serieus hebt aangepakt. Anders moet ze alsnog zelf alles nachecken." },
-      { text: "1x bij binnenkomst: 'we hebben X en Y gecheckt, klopt dat zo?' en dan los", correct: true,
+      { text: "Bij binnenkomst nog even checken met elkaar of er aandachtspunten zijn — en dan los", correct: true,
         fb: "Dit is het recept. Transparant, kort, niet dramatisch. Daarna kan iedereen gewoon feest vieren. Precies wat 'Sophie en Thomas' in het interview deden." }
     ]
   },
@@ -1334,14 +1536,46 @@ document.getElementById('copy-link').addEventListener('click', function(){
 
 /* ============== COPY CHECKLIST ============== */
 document.getElementById('copy-checklist').addEventListener('click', function(){
-  var items = [];
+  var lines = [];
   document.querySelectorAll('.checklist-group').forEach(function(g){
-    items.push('\n' + g.querySelector('h4').textContent.trim().toUpperCase());
-    g.querySelectorAll('label').forEach(function(l){ items.push('[ ] ' + l.textContent.trim()); });
+    var heading = g.querySelector('h4').textContent.trim();
+    lines.push('');
+    lines.push('— ' + heading + ' —');
+    g.querySelectorAll('label').forEach(function(l){
+      lines.push('• ' + l.textContent.trim());
+    });
   });
-  var txt = 'FEESTJE ZONDER ZORGEN — gastheer-checklist\n' + items.join('\n') + '\n\nMeer: ' + shareUrl;
+  var txt = 'Feestje zonder zorg — gastheer-checklist' + lines.join('\n') + '\n\nMeer info: ' + shareUrl;
   navigator.clipboard.writeText(txt).then(function(){ showToast('Checklist gekopieerd als tekst'); });
 });
+
+/* ============== EMERGENCY MODAL ============== */
+(function(){
+  var modal = document.getElementById('emergency-modal');
+  var openBtns = [document.getElementById('emergency-open'), document.getElementById('topbar-emergency')];
+  var closeBtn = document.getElementById('em-close');
+  var backdrop = document.getElementById('em-backdrop');
+  var lastFocus = null;
+
+  function open(e){
+    if (e) lastFocus = e.currentTarget;
+    modal.hidden = false;
+    document.body.classList.add('em-open');
+    setTimeout(function(){ closeBtn.focus(); }, 50);
+  }
+  function close(){
+    modal.hidden = true;
+    document.body.classList.remove('em-open');
+    if (lastFocus) lastFocus.focus();
+  }
+
+  openBtns.forEach(function(b){ if (b) b.addEventListener('click', open); });
+  closeBtn.addEventListener('click', close);
+  backdrop.addEventListener('click', close);
+  document.addEventListener('keydown', function(e){
+    if (e.key === 'Escape' && !modal.hidden) close();
+  });
+})();
 </script>
 </body>
 </html>
