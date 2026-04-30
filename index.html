@@ -5,15 +5,15 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
 <!-- SEO -->
-<title>Feestje zonder zorg — ook bij een pinda-allergie</title>
-<meta name="description" content="Organiseer je een feestje waar een tiener met pinda-allergie komt? Doe de 3-minuten quiz en krijg de gastheer-checklist. Gemaakt mét tieners.">
+<title>Feestje zonder zorg — pinda-allergie & etiketregels 2026</title>
+<meta name="description" content="Sinds 1-1-2026 betekent 'Kan pinda bevatten' iets anders. Quiz met etiket-voorbeelden, checklist en uitleg waarom pinda geen noot is. Gemaakt mét tieners.">
 <link rel="canonical" href="https://daanturk.github.io/feestje-zonder-zorgen/">
 <meta name="robots" content="index,follow">
 <meta name="author" content="Feestje zonder zorg">
 
 <!-- Social / OpenGraph -->
-<meta property="og:title" content="Feestje zonder zorg — ook bij een pinda-allergie">
-<meta property="og:description" content="Doe de 3-minuten quiz voor gastheren & gastvrouwen. Ontdek wat wél en niet werkt bij een tiener met pinda-allergie op je feestje.">
+<meta property="og:title" content="Feestje zonder zorg — pinda-allergie & etiketten 2026">
+<meta property="og:description" content="Wat betekent 'Kan pinda bevatten' sinds 1-1-2026? En waarom is pinda iets anders dan een noot? Quiz + checklist voor gastheren.">
 <meta property="og:url" content="https://daanturk.github.io/feestje-zonder-zorgen/">
 <meta property="og:type" content="website">
 <meta property="og:locale" content="nl_NL">
@@ -35,7 +35,7 @@
   "description": "Interactieve quiz en checklist voor gastheren die een feestje organiseren waar een tiener met pinda-allergie komt.",
   "url": "https://daanturk.github.io/feestje-zonder-zorgen/",
   "datePublished": "2026-04-22",
-  "dateModified": "2026-04-29",
+  "dateModified": "2026-04-30",
   "inLanguage": "nl-NL",
   "about": {
     "@type": "Thing",
@@ -59,10 +59,18 @@
       },
       {
         "@type": "Question",
-        "name": "Wat betekent 'kan sporen bevatten van pinda' op de verpakking?",
+        "name": "Wat betekent 'Kan pinda bevatten' sinds 1 januari 2026?",
         "acceptedAnswer": {
           "@type": "Answer",
-          "text": "Dit is een vrijwillige waarschuwing van de fabrikant: pinda zit niet in de ingrediënten, maar minieme kruisbesmetting tijdens productie is niet uitgesloten. Iets anders dan 'Bevat pinda' in de ingrediëntenlijst — dat is een harde NEE. Het officiële advies van Voedingscentrum en Nederlands Anafylaxis Netwerk is: bij ernstige allergie liever vermijden. In de praktijk bepalen de ouders wat de drempel is voor hún kind — bel ze daarom altijd voor de boodschappen."
+          "text": "Sinds 1 januari 2026 mag een fabrikant alleen nog 'Kan pinda bevatten' of 'Niet geschikt voor mensen met een pinda-allergie' op het etiket zetten als met een risicobeoordeling is aangetoond dat er reëel kruisbesmettingsrisico is. Het is dus geen juridische voorzorg meer, maar een onderbouwd signaal. Voor gastheren betekent dit: mét waarschuwing = niet kopen voor het feest. Géén waarschuwing op een voorverpakt product = officieel veilig. Dit geldt alleen voor industrieel voorverpakte producten — bij bakker, snackbar of marktkraam blijft mondeling navragen de norm. Bron: NVWA en Stichting Voedselallergie."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Is een pinda hetzelfde als een noot?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Nee. Botanisch is een pinda een peulvrucht (familie van bonen en erwten), géén noot. Veel mensen met pinda-allergie verdragen noten als hazelnoot of amandel prima — en omgekeerd. Op etiketten staan ze daarom apart vermeld: 'pinda' is iets anders dan 'noten' (waarmee meestal hazel-, amandel-, walnoot, cashew, pistache, pecan, paranoot en macadamia worden bedoeld). Voor een gastheer is dit cruciaal: een product met 'kan noten bevatten' maar zonder 'pinda' kan veilig zijn voor iemand met pinda-allergie — maar bel altijd de ouders. Bron: Stichting Voedselallergie en Voedingscentrum."
         }
       },
       {
@@ -950,6 +958,236 @@ footer a { color: var(--outline); }
 }
 .toast.show { opacity: 1; transform: translateX(-50%) translateY(-8px); }
 
+/* ===== PINDA-IS-GEEN-NOOT BLOK (olifant in de kamer) ===== */
+.olifant {
+  background: linear-gradient(135deg, #FFF3E0 0%, #FFDAD2 100%);
+  border-radius: var(--radius-xl);
+  padding: var(--spacing-lg);
+  border: 2px solid var(--accent);
+  position: relative;
+  overflow: hidden;
+}
+.olifant-tag {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  background: var(--accent);
+  color: #4A2A0A;
+  font-size: 12px;
+  font-weight: 800;
+  padding: 5px 12px;
+  border-radius: var(--radius-full);
+  margin-bottom: var(--spacing-sm);
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+}
+.olifant h2 {
+  margin-bottom: var(--spacing-sm);
+  color: var(--on-surface);
+}
+.olifant-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: var(--spacing-md);
+  margin-top: var(--spacing-md);
+}
+.olifant-card {
+  background: #fff;
+  border-radius: var(--radius-lg);
+  padding: var(--spacing-md);
+  text-align: center;
+  border: 1px solid var(--outline-variant);
+}
+.olifant-card.pinda { border-top: 4px solid var(--primary); }
+.olifant-card.noot { border-top: 4px solid var(--secondary); }
+.olifant-card h3 {
+  font-size: 17px;
+  margin: 6px 0 4px;
+}
+.olifant-card .label-pill {
+  display: inline-block;
+  font-size: 11px;
+  font-weight: 700;
+  padding: 3px 10px;
+  border-radius: var(--radius-full);
+  margin-bottom: 6px;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+}
+.olifant-card.pinda .label-pill { background: var(--primary-container); color: var(--on-primary-container); }
+.olifant-card.noot .label-pill { background: var(--secondary-container); color: var(--on-secondary-container); }
+.olifant-card p {
+  font-size: 13px;
+  color: var(--on-surface-variant);
+  margin: 4px 0 0;
+  line-height: 1.45;
+}
+.olifant-svg {
+  width: 64px;
+  height: 64px;
+  margin: 0 auto 4px;
+  display: block;
+}
+.olifant-key {
+  background: #fff;
+  border-radius: var(--radius-lg);
+  padding: var(--spacing-md);
+  margin-top: var(--spacing-md);
+  border-left: 4px solid var(--primary);
+  font-size: 15px;
+  line-height: 1.55;
+}
+.olifant-key strong { color: var(--primary-dark); }
+
+/* ===== ETIKET-VOORBEELDEN IN QUIZ ===== */
+.etiket-vergelijk {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: var(--spacing-sm);
+  margin: var(--spacing-md) 0 var(--spacing-sm);
+}
+.etiket {
+  background: #FFFEF7;
+  border: 1.5px solid #2B2B2B;
+  border-radius: 8px;
+  padding: 10px 12px;
+  font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+  font-size: 11px;
+  line-height: 1.35;
+  color: #1A1A1A;
+  position: relative;
+  box-shadow: 0 4px 12px rgba(0,0,0,.08);
+  min-height: 180px;
+}
+.etiket-product {
+  font-weight: 800;
+  font-size: 13px;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+  border-bottom: 1px solid #2B2B2B;
+  padding-bottom: 4px;
+  margin-bottom: 6px;
+}
+.etiket-section {
+  margin: 6px 0;
+}
+.etiket-section-title {
+  font-weight: 800;
+  font-size: 10px;
+  text-transform: uppercase;
+}
+.etiket-allergeen {
+  font-weight: 700;
+  text-decoration: underline;
+}
+.etiket-warn {
+  background: #FFF1E0;
+  border: 1px dashed #C1553B;
+  padding: 6px 8px;
+  border-radius: 4px;
+  margin-top: 6px;
+  font-weight: 700;
+  font-size: 11px;
+  color: #8A2B1A;
+}
+.etiket-stamp {
+  position: absolute;
+  top: 8px;
+  right: 8px;
+  width: 56px;
+  height: 56px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: 800;
+  font-size: 11px;
+  text-align: center;
+  line-height: 1.1;
+  transform: rotate(-12deg);
+  letter-spacing: 0.02em;
+}
+.etiket-stamp.ok {
+  background: rgba(31,122,110,.12);
+  border: 2px solid var(--secondary);
+  color: var(--secondary-dark);
+}
+.etiket-stamp.no {
+  background: rgba(186,26,26,.1);
+  border: 2px solid var(--danger);
+  color: var(--danger);
+}
+.etiket-caption {
+  text-align: center;
+  font-size: 12px;
+  font-weight: 700;
+  margin-top: 6px;
+  color: var(--on-surface-variant);
+}
+.etiket-caption.ok { color: var(--secondary-dark); }
+.etiket-caption.no { color: var(--danger); }
+
+/* ===== 2026-INFOBLOK ===== */
+.beleid-2026 {
+  background: var(--secondary-container);
+  border-radius: var(--radius-xl);
+  padding: var(--spacing-lg);
+  border-left: 6px solid var(--secondary);
+}
+.beleid-2026 h2 {
+  color: var(--on-secondary-container);
+  margin-bottom: var(--spacing-sm);
+}
+.beleid-2026 .beleid-date-tag {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  background: var(--secondary);
+  color: #fff;
+  font-size: 12px;
+  font-weight: 700;
+  padding: 5px 12px;
+  border-radius: var(--radius-full);
+  margin-bottom: var(--spacing-sm);
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+.beleid-list {
+  list-style: none;
+  padding: 0;
+  margin: var(--spacing-md) 0 0;
+}
+.beleid-list li {
+  display: flex;
+  gap: 12px;
+  padding: 10px 0;
+  border-bottom: 1px solid rgba(10,111,99,.15);
+  font-size: 15px;
+  line-height: 1.5;
+  color: var(--on-secondary-container);
+}
+.beleid-list li:last-child { border-bottom: none; }
+.beleid-list .beleid-icon {
+  flex-shrink: 0;
+  width: 28px;
+  height: 28px;
+  border-radius: var(--radius-full);
+  background: #fff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: 800;
+  font-size: 14px;
+  color: var(--secondary-dark);
+}
+.beleid-bron {
+  font-size: 12px;
+  margin-top: var(--spacing-md);
+  color: var(--on-secondary-container);
+  opacity: 0.85;
+}
+.beleid-bron a { color: var(--secondary-dark); }
+
 /* ===== RESPONSIVE ===== */
 @media(max-width: 480px) {
   h1 { font-size: 28px; }
@@ -959,6 +1197,11 @@ footer a { color: var(--outline); }
   .quiz-result .score-big { font-size: 44px; }
   .bento { gap: var(--spacing-sm); }
   .bento-item { min-height: 120px; padding: var(--spacing-sm); }
+  .olifant-grid { gap: var(--spacing-sm); }
+  .olifant-card { padding: var(--spacing-sm); }
+  .etiket { padding: 8px 10px; min-height: 170px; font-size: 10.5px; }
+  .etiket-product { font-size: 12px; }
+  .etiket-stamp { width: 48px; height: 48px; font-size: 10px; }
 }
 
 /* ===== PRINT ===== */
@@ -993,17 +1236,88 @@ footer a { color: var(--outline); }
   <!-- HERO -->
   <section class="hero">
     <div class="hero-badge">
-      <span class="material-symbols-outlined" style="font-size:16px">group</span>
-      Gemaakt mét tieners met pinda-allergie · April 2026
+      <span class="material-symbols-outlined" style="font-size:16px">verified</span>
+      Bijgewerkt voor de nieuwe etiketregels per 1-1-2026
     </div>
     <h1>Feestje zonder zorg: ook bij een pinda-allergie!</h1>
-    <p class="hero-sub">Je organiseert een feestje. Er komt een tiener met een ernstige pinda-allergie. In <strong>3 minuten</strong> weet je precies wat wél en niet werkt — getest door de tieners zelf.</p>
+    <p class="hero-sub">Je organiseert een feestje. Er komt een tiener met een ernstige pinda-allergie. In <strong>3 minuten</strong> weet je precies wat wél en niet werkt — inclusief wat de nieuwe etiketregels van 2026 betekenen.</p>
     <div class="hero-cta-row">
       <a href="#quiz" class="btn-primary">
         <span class="material-symbols-outlined" style="font-size:20px">quiz</span>
         Start de 3-minuten quiz
       </a>
       <a href="#checklist" class="btn-ghost">of bekijk direct de checklist ↓</a>
+    </div>
+  </section>
+
+  <!-- OLIFANT IN DE KAMER: pinda is geen noot -->
+  <section class="section">
+    <div class="olifant">
+      <span class="olifant-tag">
+        <span class="material-symbols-outlined" style="font-size:14px">priority_high</span>
+        De olifant in de kamer
+      </span>
+      <h2>Een pinda is géén noot.</h2>
+      <p style="margin:6px 0 0;color:var(--on-surface-variant);font-size:15px;line-height:1.55">Bijna iedereen verwart het. Maar voor het feestje, het etiket en de allergie maakt het echt verschil.</p>
+
+      <div class="olifant-grid">
+        <div class="olifant-card pinda">
+          <svg class="olifant-svg" viewBox="0 0 64 64" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+            <ellipse cx="32" cy="22" rx="14" ry="14" fill="#D4A574" stroke="#8A5A2B" stroke-width="1.5"/>
+            <ellipse cx="32" cy="42" rx="16" ry="16" fill="#D4A574" stroke="#8A5A2B" stroke-width="1.5"/>
+            <path d="M18 30 Q32 26 46 30" stroke="#8A5A2B" stroke-width="1" fill="none"/>
+            <path d="M22 18 Q24 20 23 24 M40 18 Q42 22 40 24 M22 38 Q26 42 24 48 M40 38 Q44 44 42 50" stroke="#8A5A2B" stroke-width="0.6" fill="none" opacity="0.5"/>
+          </svg>
+          <span class="label-pill">Peulvrucht</span>
+          <h3>Pinda</h3>
+          <p>Familie van bonen, erwten, linzen. Groeit ondergronds. Op het etiket apart vermeld als <strong>"pinda"</strong>.</p>
+        </div>
+        <div class="olifant-card noot">
+          <svg class="olifant-svg" viewBox="0 0 64 64" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+            <path d="M32 8 Q20 12 18 28 Q16 46 32 56 Q48 46 46 28 Q44 12 32 8 Z" fill="#A0673A" stroke="#5A3318" stroke-width="1.5"/>
+            <path d="M32 12 Q24 16 22 30 Q22 44 32 52" stroke="#5A3318" stroke-width="0.8" fill="none" opacity="0.5"/>
+            <path d="M32 12 Q40 16 42 30 Q42 44 32 52" stroke="#5A3318" stroke-width="0.8" fill="none" opacity="0.5"/>
+            <ellipse cx="32" cy="32" rx="2" ry="22" fill="#5A3318" opacity="0.3"/>
+          </svg>
+          <span class="label-pill">Boomnoot</span>
+          <h3>Noten</h3>
+          <p>Hazelnoot, amandel, walnoot, cashew, pistache, pecan, paranoot, macadamia. Op het etiket onder <strong>"noten"</strong>.</p>
+        </div>
+      </div>
+
+      <div class="olifant-key">
+        <strong>Waarom dit ertoe doet:</strong> veel mensen met pinda-allergie verdragen noten als hazelnoot of amandel prima — en omgekeerd. Een product met "Kan noten bevatten" maar zonder pinda kan dus prima zijn. <strong>Maar lees altijd het etiket precies en bel de ouders bij twijfel</strong> — sommige tieners hebben naast pinda óók noten-allergie.
+        <span style="display:block;margin-top:6px;font-size:13px;color:var(--on-surface-variant)">Bron: <a href="https://www.voedselallergie.nl/allergenen/80-pinda/500-aanduidingen-op-het-etiket.html" target="_blank" rel="noopener" style="color:var(--primary-dark)">Stichting Voedselallergie — Aanduidingen op het etiket</a> · <a href="https://www.voedingscentrum.nl/encyclopedie/allergenen-op-het-etiket.aspx" target="_blank" rel="noopener" style="color:var(--primary-dark)">Voedingscentrum</a></span>
+      </div>
+    </div>
+  </section>
+
+  <!-- 2026-BELEID -->
+  <section class="section">
+    <div class="beleid-2026">
+      <span class="beleid-date-tag">
+        <span class="material-symbols-outlined" style="font-size:14px">event</span>
+        Sinds 1 januari 2026
+      </span>
+      <h2>Etiketten zijn betrouwbaarder geworden</h2>
+      <p style="margin:0;color:var(--on-secondary-container);font-size:15px;line-height:1.55">De Nederlandse Voedsel- en Warenautoriteit (NVWA) handhaaft nu strenger op allergenen-info. Voor jou als gastheer betekent dat dit:</p>
+
+      <ul class="beleid-list">
+        <li>
+          <div class="beleid-icon">✓</div>
+          <div><strong>Géén waarschuwing</strong> op een voorverpakt product = onderbouwd veilig. Daar mag je op vertrouwen.</div>
+        </li>
+        <li>
+          <div class="beleid-icon">✗</div>
+          <div><strong>"Kan pinda bevatten"</strong> of <strong>"Niet geschikt voor mensen met een pinda-allergie"</strong> = er is een reëel risico aangetoond. Niet kopen — ook al ging het vroeger goed.</div>
+        </li>
+        <li>
+          <div class="beleid-icon">!</div>
+          <div><strong>Bij bakker, snackbar, marktkraam of zelfgebakken</strong> gelden deze regels niet. Daar blijft mondeling navragen de norm.</div>
+        </li>
+      </ul>
+
+      <p class="beleid-bron">Bronnen: <a href="https://www.nvwa.nl/actueel/nieuws/2025/12/18/nvwa-start-in-2026-met-toezicht-etiketregels-allergeneninformatie" target="_blank" rel="noopener">NVWA — toezicht etiketregels (18 dec 2025)</a> · <a href="https://www.voedselallergie.nl/nieuws/nvwa-start-in-2026-met-toezicht-nieuwe-etiketten/" target="_blank" rel="noopener">Stichting Voedselallergie</a></p>
     </div>
   </section>
 
@@ -1040,11 +1354,16 @@ footer a { color: var(--outline); }
     </div>
   </section>
 
-  <!-- QUOTE -->
+  <!-- QUOTES (tiener + ouder) -->
   <section class="section">
     <div class="quote-card" style="border-left-color:var(--accent)">
       <p class="quote-text">"Op grote feesten word je er elke 5 seconden aan herinnerd. Iedereen is bezig met mijn allergie. Je weet dat ze willen helpen, maar ze beseffen niet dat je dit al zó vaak hebt meegemaakt."</p>
       <cite class="quote-cite">— Emma (13), draagt een EpiPen sinds haar 7e</cite>
+    </div>
+
+    <div class="quote-card" style="border-left-color:var(--secondary);margin-top:var(--spacing-md)">
+      <p class="quote-text">"Sinds januari staat 'kan pinda bevatten' op meer producten dan we gewend waren — onze dochter kan opeens minder kiezen. Dat voelt eerst slecht. Wat ons hielp: weten dat een leeg etiket nu echt veilig is, en dat we bij de bakker gewoon kunnen blijven vragen."</p>
+      <cite class="quote-cite">— Ouder van een 13-jarige met pinda-allergie</cite>
     </div>
   </section>
 
@@ -1086,9 +1405,10 @@ footer a { color: var(--outline); }
           Vooraf
         </h4>
         <ul>
-          <li><input type="checkbox" id="c1"><label for="c1">Bel even met de ouders én de tiener: wat kan wél, wat absoluut niet?</label></li>
-          <li><input type="checkbox" id="c2"><label for="c2">Lees etiketten: "Bevat pinda/noten" = altijd weglaten. "Kan sporen bevatten" = officieel advies is vermijden — in de praktijk: even afstemmen met de ouders</label></li>
-          <li><input type="checkbox" id="c3"><label for="c3">Twijfel je over een product? Stuur een foto van de ingrediënten naar de ouders</label></li>
+          <li><input type="checkbox" id="c1"><label for="c1">Bel even met de ouders én de tiener: wat kan wél, wat absoluut niet? Vraag óók of er naast pinda nog andere allergieën spelen (noten, soja, etc.)</label></li>
+          <li><input type="checkbox" id="c2"><label for="c2">Lees etiketten van voorverpakte producten: <strong>"Bevat pinda"</strong> in ingrediënten = altijd weglaten. <strong>"Kan pinda bevatten"</strong> of <strong>"Niet geschikt voor mensen met een pinda-allergie"</strong> = sinds 2026 onderbouwd risico, dus weglaten. <em>Geen</em> pinda-vermelding = sinds 2026 onderbouwd veilig</label></li>
+          <li><input type="checkbox" id="c3"><label for="c3">Bij bakker, snackbar, markt of zelfgemaakt: het etiketregime geldt niet. Mondeling navragen — bel anders de ouders</label></li>
+          <li><input type="checkbox" id="c3b"><label for="c3b">Let op: pinda is iets anders dan noten. "Kan noten bevatten" zonder pinda kan oké zijn — check altijd of de tiener óók noten-allergie heeft</label></li>
         </ul>
       </div>
 
@@ -1234,10 +1554,21 @@ footer a { color: var(--outline); }
     </details>
 
     <details class="faq">
-      <summary>Wat betekent "kan sporen bevatten van pinda"?</summary>
-      <p>Dit is een vrijwillige waarschuwing: pinda zit <strong>niet</strong> in de ingrediënten, maar minieme kruisbesmetting tijdens productie is niet uitgesloten. Iets anders dan <em>"Bevat pinda"</em> in de ingrediëntenlijst — dat is een harde NEE.</p>
-      <p><strong>Officiële richtlijn:</strong> Voedingscentrum en het Nederlands Anafylaxis Netwerk adviseren bij ernstige allergie om producten met "kan sporen bevatten" te vermijden, omdat de drempel per persoon verschilt en niet voorspelbaar is.</p>
-      <p><strong>In de praktijk:</strong> de ouders bepalen wat veilig is voor hún kind. Bel ze daarom altijd vóór je inkopen doet — dan weet je zeker welke merken oké zijn. (Bronnen: <a href="https://www.voedingscentrum.nl/encyclopedie/allergenen-op-het-etiket.aspx" target="_blank" rel="noopener">Voedingscentrum — Allergenen op het etiket</a>, <a href="https://www.anafylaxis.nl" target="_blank" rel="noopener">Nederlands Anafylaxis Netwerk</a>)</p>
+      <summary>Wat betekent "Kan pinda bevatten" sinds 1 januari 2026?</summary>
+      <p>Sinds 1 januari 2026 mag een fabrikant deze waarschuwing — of de variant <em>"Niet geschikt voor mensen met een pinda-allergie"</em> — alléén op het etiket zetten als met een risicobeoordeling is aangetoond dat er reëel kruisbesmettingsrisico is. Het is dus geen losse voorzorg meer, maar een <strong>onderbouwd signaal</strong>.</p>
+      <p><strong>Voor een gastheer betekent dat:</strong></p>
+      <ul style="margin:6px 0 12px 18px;padding:0;color:var(--on-surface-variant);font-size:15px;line-height:1.55">
+        <li>Mét waarschuwing → niet kopen voor dit feest.</li>
+        <li>Zonder waarschuwing op een voorverpakt product → officieel veilig, je mag erop vertrouwen.</li>
+        <li>Bij bakker, marktkraam, snackbar of zelfgebakken → deze regels gelden niet. Altijd mondeling navragen.</li>
+      </ul>
+      <p><strong>Belangrijk in de overgangsfase:</strong> sommige producten hebben nog oude tekst zoals "kan sporen van pinda bevatten" of "geproduceerd in fabriek waar pinda…". Daarvoor geldt de nieuwe onderbouwing nog niet — bij twijfel: ouders bellen blijft de gouden regel. (Bronnen: <a href="https://www.nvwa.nl/actueel/nieuws/2025/12/18/nvwa-start-in-2026-met-toezicht-etiketregels-allergeneninformatie" target="_blank" rel="noopener">NVWA</a> · <a href="https://www.voedselallergie.nl/nieuws/nvwa-start-in-2026-met-toezicht-nieuwe-etiketten/" target="_blank" rel="noopener">Stichting Voedselallergie</a>)</p>
+    </details>
+
+    <details class="faq">
+      <summary>Is een pinda hetzelfde als een noot?</summary>
+      <p><strong>Nee.</strong> Botanisch is een pinda een <em>peulvrucht</em> (familie van bonen, erwten, linzen) — geen noot. Veel mensen met pinda-allergie verdragen noten als hazelnoot of amandel prima, en omgekeerd. Op etiketten staan ze daarom apart vermeld.</p>
+      <p>Als gastheer: een product met "Kan noten bevatten" zonder vermelding van pinda kan veilig zijn voor iemand met alleen pinda-allergie. <strong>Maar check altijd of de tiener naast pinda óók noten-allergie heeft</strong> — dat komt namelijk regelmatig samen voor. Bel bij twijfel de ouders. (Bron: <a href="https://www.voedselallergie.nl/allergenen/80-pinda/500-aanduidingen-op-het-etiket.html" target="_blank" rel="noopener">Stichting Voedselallergie — Aanduidingen op het etiket</a>)</p>
     </details>
 
     <details class="faq">
@@ -1290,19 +1621,23 @@ footer a { color: var(--outline); }
 
   <!-- BRONNEN -->
   <div class="sources">
-    <strong>Bronnen:</strong><br>
-    Discovery-interview met een tiener (13) en ouders, april 2026 (geanonimiseerd) ·
-    <a href="https://www.voedselallergie.nl/allergenen/pinda/" target="_blank" rel="noopener">Stichting Voedselallergie — Pinda</a> ·
+    <strong>Bronnen (primaire):</strong><br>
+    <a href="https://www.nvwa.nl/actueel/nieuws/2025/12/18/nvwa-start-in-2026-met-toezicht-etiketregels-allergeneninformatie" target="_blank" rel="noopener">NVWA — start toezicht etiketregels allergeneninformatie (18-12-2025)</a> ·
+    <a href="https://www.nvwa.nl/onderwerpen/allergenen/documenten/consument/eten-drinken-roken/allergenen/publicaties/vragen-en-antwoorden-pal" target="_blank" rel="noopener">NVWA — Vragen en antwoorden PAL</a> ·
+    <a href="https://www.voedselallergie.nl/nieuws/nvwa-start-in-2026-met-toezicht-nieuwe-etiketten/" target="_blank" rel="noopener">Stichting Voedselallergie — Toezicht 2026</a> ·
+    <a href="https://www.voedselallergie.nl/allergenen/80-pinda/500-aanduidingen-op-het-etiket.html" target="_blank" rel="noopener">Stichting Voedselallergie — Aanduidingen op het etiket (pinda)</a><br>
+    <strong>Aanvullend:</strong>
     <a href="https://www.voedselallergie.nl/anafylaxie" target="_blank" rel="noopener">Stichting Voedselallergie — Anafylaxie</a> ·
-    <a href="https://www.voedingscentrum.nl/encyclopedie/allergenen-op-het-etiket.aspx" target="_blank" rel="noopener">Voedingscentrum — Allergenen op het etiket</a> ·
-    <a href="https://www.lumc.nl/afdelingen/spoedeisende-hulp/diagnoses-en-behandelingen/het-gebruik-van-de-epipen/" target="_blank" rel="noopener">LUMC — EpiPen-gebruik</a><br>
-    Laatste update: 29 april 2026 · Dit is een prototype ter validatie — geen medisch advies.
+    <a href="https://www.voedingscentrum.nl/encyclopedie/allergenen-op-het-etiket.aspx" target="_blank" rel="noopener">Voedingscentrum</a> ·
+    <a href="https://www.lumc.nl/afdelingen/spoedeisende-hulp/diagnoses-en-behandelingen/het-gebruik-van-de-epipen/" target="_blank" rel="noopener">LUMC — EpiPen-gebruik</a> ·
+    Discovery-interview met een tiener (13) en ouders, april 2026 (geanonimiseerd)<br>
+    Laatste update: 30 april 2026 · Dit is een prototype ter validatie — geen medisch advies.
   </div>
 
 </main>
 
 <footer>
-  Gemaakt door Daan Turk · <a href="mailto:daanturk@gmail.com">Feedback? Mail me</a> · Versie 4.0
+  Gemaakt door Daan Turk · <a href="mailto:daanturk@gmail.com">Feedback? Mail me</a> · Versie 5.0 (2026-04-30)
 </footer>
 </div>
 
@@ -1323,14 +1658,15 @@ const QUESTIONS = [
     ]
   },
   {
-    q: "Je staat in de supermarkt. Op het pak koekjes staat: 'Kan sporen bevatten van noten'. Veilig?",
+    q: "Twee pakjes koekjes in de supermarkt. Welk pakje neem je mee voor het feest?",
+    etiketten: true,
     options: [
-      { text: "Ja, want er staat geen pinda in de ingrediënten", correct: true,
-        fb: "Klopt — mits je het etiket goed leest. 'Bevat pinda/noten' in de ingrediëntenlijst = harde NEE. 'Kan sporen bevatten' is een vrijwillige waarschuwing van de fabrikant over mogelijke kruisbesmetting. Officieel advies (Voedingscentrum, Anafylaxis Netwerk) is: bij ernstige allergie liever vermijden. In de praktijk bepalen de ouders wat veilig is voor hún kind — bel ze daarom altijd voor de boodschappen." },
-      { text: "Nee, niet kopen voor dit feest", correct: false,
-        fb: "Begrijpelijk én volgens de officiële richtlijn niet onterecht — Voedingscentrum en Anafylaxis Netwerk adviseren bij ernstige allergie om 'kan sporen bevatten' te vermijden. Maar het is iets anders dan 'Bevat pinda' (= ingrediënt = altijd vermijden). Bel de ouders: zij kennen de drempel van hún kind." },
-      { text: "Oké als je het uit de verpakking haalt en in een eigen bakje doet", correct: false,
-        fb: "Overhevelen helpt niet: als er noten in zouden zitten, zit het in het product zelf. Etiket leest altijd voor — niet de presentatie." }
+      { text: "Pakje A — geen waarschuwing voor pinda", correct: true,
+        fb: "Klopt. Sinds 1-1-2026 mag een fabrikant alleen 'Kan pinda bevatten' op het etiket zetten als met een risicobeoordeling is aangetoond dat er reëel risico is. Géén waarschuwing = onderbouwd veilig — daar mag je nu op vertrouwen. (Bronnen: NVWA, Stichting Voedselallergie)" },
+      { text: "Pakje B — met 'Kan pinda bevatten'", correct: false,
+        fb: "Niet doen. Dit was vóór 2026 vaak een vrijwillige juridische voorzorg, maar sinds 2026 betekent het: er ís een onderbouwd risico. Niet kopen voor het feest — ook al ging het vroeger goed met dit merk. Bel de ouders voor een veilig alternatief." },
+      { text: "Pakje B oké als je de koekjes overhevelt naar een eigen schaal", correct: false,
+        fb: "Overhevelen helpt niet: het risico zit in het product zelf, niet in de verpakking. Etiket leest altijd voor — niet de presentatie." }
     ]
   },
   {
@@ -1350,7 +1686,7 @@ const QUESTIONS = [
       { text: "Niks zeggen — niet mijn verantwoordelijkheid", correct: false,
         fb: "Wel dus. Jij bent gastheer. Als er iets gebeurt, is dit jouw feest. Bovendien: één koekje kruimel op de verkeerde plek kan al raak zijn." },
       { text: "Beleefd de koekjes op een andere plek zetten en uitleggen waarom", correct: true,
-        fb: "Perfect. Niet beschuldigend, wel helder. De meeste mensen begrijpen het meteen als je uitlegt dat het om veiligheid gaat — niet om smaak." },
+        fb: "Perfect. Niet beschuldigend, wel helder. Bij zelfgebakken telt geen etiket — alleen wat de baker erin gedaan heeft. Eén kruimel op de verkeerde plek kan al raak zijn. De meeste mensen begrijpen het meteen als je uitlegt dat het om veiligheid gaat — niet om smaak." },
       { text: "De koekjes gewoon op tafel laten, ze hoeft ze niet te eten", correct: false,
         fb: "Risico op kruisbesmetting via handen, servetten, snijplankjes, etc. Ook een kruimel op de verkeerde plek kan een reactie triggeren." }
     ]
@@ -1386,7 +1722,33 @@ const QUESTIONS = [
     answered = false;
     nextBtn.style.display = 'none';
 
-    let html = '<p class="quiz-q">' + Q.q + '</p><ul class="quiz-opts">';
+    let html = '<p class="quiz-q">' + Q.q + '</p>';
+
+    if (Q.etiketten) {
+      html += '<div class="etiket-vergelijk" aria-hidden="false">' +
+        '<div>' +
+          '<div class="etiket">' +
+            '<div class="etiket-stamp ok">VEILIG<br>2026</div>' +
+            '<div class="etiket-product">Choco<br>koekjes</div>' +
+            '<div class="etiket-section"><span class="etiket-section-title">Ingrediënten:</span> tarwemeel, suiker, plantaardige olie, cacao, melk, ei, zout.</div>' +
+            '<div class="etiket-section"><span class="etiket-section-title">Allergenen:</span> bevat <span class="etiket-allergeen">tarwe</span>, <span class="etiket-allergeen">melk</span>, <span class="etiket-allergeen">ei</span>.</div>' +
+          '</div>' +
+          '<div class="etiket-caption ok">Pakje A — geen pinda-vermelding</div>' +
+        '</div>' +
+        '<div>' +
+          '<div class="etiket">' +
+            '<div class="etiket-stamp no">RISICO<br>2026</div>' +
+            '<div class="etiket-product">Choco<br>koekjes</div>' +
+            '<div class="etiket-section"><span class="etiket-section-title">Ingrediënten:</span> tarwemeel, suiker, plantaardige olie, cacao, melk, ei, zout.</div>' +
+            '<div class="etiket-section"><span class="etiket-section-title">Allergenen:</span> bevat <span class="etiket-allergeen">tarwe</span>, <span class="etiket-allergeen">melk</span>, <span class="etiket-allergeen">ei</span>.</div>' +
+            '<div class="etiket-warn">⚠ Kan pinda bevatten</div>' +
+          '</div>' +
+          '<div class="etiket-caption no">Pakje B — met 2026-waarschuwing</div>' +
+        '</div>' +
+      '</div>';
+    }
+
+    html += '<ul class="quiz-opts">';
     Q.options.forEach(function(opt, i){
       html += '<li><button class="quiz-opt" data-i="' + i + '" type="button"><span class="opt-letter">' + letters[i] + '</span><span>' + opt.text + '</span></button></li>';
     });
