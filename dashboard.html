@@ -1,0 +1,677 @@
+<!DOCTYPE html>
+<html lang="nl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Dashboard — Feestje zonder Zorgen</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Lexend:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@400,0&display=swap" rel="stylesheet">
+<style>
+:root {
+  --primary: #C1553B;
+  --primary-dark: #A13D25;
+  --primary-container: #FFDAD2;
+  --secondary: #1F7A6E;
+  --secondary-dark: #005047;
+  --secondary-container: #9CEFE0;
+  --surface: #FFF8F5;
+  --surface-container: #F5ECE7;
+  --on-surface: #1E1B18;
+  --on-surface-variant: #57423D;
+  --outline: #8A726C;
+  --outline-variant: #DDC0B9;
+  --success: #1F7A6E;
+  --danger: #BA1A1A;
+  --accent: #F4A261;
+  --bg: #EFE8E4;
+}
+*{box-sizing:border-box;margin:0;padding:0;}
+body{font-family:'Lexend',system-ui,sans-serif;background:var(--bg);color:var(--on-surface);min-height:100vh;}
+
+/* HEADER */
+.header{background:var(--primary);color:#fff;padding:14px 24px;display:flex;align-items:center;justify-content:space-between;gap:12px;flex-wrap:wrap;}
+.header-left{display:flex;align-items:center;gap:10px;}
+.header-left h1{font-size:16px;font-weight:700;line-height:1.2;}
+.header-left small{font-size:12px;opacity:0.75;display:block;}
+.refresh-btn{background:rgba(255,255,255,0.18);border:none;border-radius:8px;color:#fff;padding:7px 14px;font-size:13px;font-weight:600;cursor:pointer;display:flex;align-items:center;gap:6px;font-family:inherit;}
+.refresh-btn:hover{background:rgba(255,255,255,0.28);}
+
+/* SETUP BANNER */
+.setup-banner{background:#FFF3CD;border-bottom:1.5px solid #FFD066;padding:10px 24px;font-size:13px;display:flex;align-items:center;gap:8px;flex-wrap:wrap;}
+.setup-banner.hidden{display:none;}
+.setup-link{color:var(--primary-dark);font-weight:700;text-decoration:underline;cursor:pointer;background:none;border:none;font-family:inherit;font-size:13px;padding:0;}
+
+/* MAIN */
+.main{padding:24px;max-width:1400px;margin:0 auto;}
+
+/* PERIOD BAR */
+.period-bar{display:flex;gap:8px;margin-bottom:24px;align-items:center;flex-wrap:wrap;}
+.period-label{font-size:13px;color:var(--on-surface-variant);font-weight:500;}
+.period-btn{padding:6px 16px;border-radius:20px;border:1.5px solid var(--outline-variant);background:#fff;font-size:13px;cursor:pointer;color:var(--on-surface);font-family:inherit;font-weight:500;}
+.period-btn.active{background:var(--primary);color:#fff;border-color:var(--primary);font-weight:700;}
+.period-btn:hover:not(.active){border-color:var(--outline);}
+#data-src-note{margin-left:auto;font-size:11px;color:var(--on-surface-variant);}
+
+/* SECTION HEADER */
+.sec-head{display:flex;align-items:center;gap:10px;margin:28px 0 14px;}
+.sec-head h2{font-size:14px;font-weight:700;color:var(--on-surface);}
+.badge{font-size:11px;padding:3px 9px;border-radius:10px;font-weight:700;}
+.badge-live{background:#D4EDDA;color:#155724;}
+.badge-manual{background:#FFF3CD;color:#856404;}
+.badge-setup{background:#F8D7DA;color:#721C24;}
+
+/* KPI GRID */
+.kpi-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(195px,1fr));gap:12px;}
+.kpi{background:#fff;border-radius:14px;padding:18px 20px;border:1px solid rgba(0,0,0,0.055);box-shadow:0 1px 3px rgba(0,0,0,0.04);position:relative;overflow:hidden;}
+.kpi::before{content:'';position:absolute;top:0;left:0;right:0;height:3px;}
+.kpi.reach::before{background:var(--accent);}
+.kpi.engage::before{background:var(--secondary);}
+.kpi.convert::before{background:var(--primary);}
+.kpi-label{font-size:11px;color:var(--on-surface-variant);font-weight:600;text-transform:uppercase;letter-spacing:0.5px;margin-bottom:8px;}
+.kpi-val{font-size:34px;font-weight:800;color:var(--on-surface);line-height:1;margin-bottom:3px;}
+.kpi-val.na{color:#C8BDB8;font-size:28px;}
+.kpi-sub{font-size:12px;color:var(--on-surface-variant);margin-bottom:8px;}
+.kpi-src{font-size:11px;color:var(--on-surface-variant);display:flex;align-items:center;gap:5px;margin-top:auto;}
+.dot{width:7px;height:7px;border-radius:50%;flex-shrink:0;}
+.dot-green{background:#28a745;}
+.dot-yellow{background:#ffc107;}
+.dot-grey{background:#C8BDB8;}
+
+/* CARD WRAPPER */
+.card{background:#fff;border-radius:16px;border:1px solid rgba(0,0,0,0.055);overflow:hidden;}
+.card-body{padding:20px 24px;}
+
+/* IG INPUTS */
+.ig-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(170px,1fr));gap:12px;}
+.ig-field label{display:block;font-size:11px;font-weight:600;text-transform:uppercase;letter-spacing:0.4px;color:var(--on-surface-variant);margin-bottom:6px;}
+.ig-field input{width:100%;border:1.5px solid var(--outline-variant);border-radius:8px;padding:9px 12px;font-size:20px;font-weight:700;color:var(--on-surface);background:var(--surface);font-family:inherit;}
+.ig-field input:focus{outline:none;border-color:var(--primary);}
+.btn-save{background:var(--primary);color:#fff;border:none;border-radius:8px;padding:10px 22px;font-size:14px;font-weight:700;cursor:pointer;font-family:inherit;}
+.btn-save:hover{background:var(--primary-dark);}
+.saved-note{font-size:12px;color:var(--success);font-weight:600;display:none;}
+
+/* LOOKER SECTION */
+.looker-placeholder{border:2px dashed var(--outline-variant);border-radius:12px;padding:36px 24px;text-align:center;background:var(--surface);}
+.looker-placeholder .icon{font-size:44px;color:#C8BDB8;display:block;margin-bottom:10px;}
+.looker-placeholder h3{font-size:15px;font-weight:700;margin-bottom:6px;}
+.looker-placeholder p{font-size:13px;color:var(--on-surface-variant);line-height:1.6;max-width:480px;margin:0 auto;}
+.looker-input-row{display:flex;gap:8px;justify-content:center;flex-wrap:wrap;margin-top:16px;}
+.looker-input-row input{border:1.5px solid var(--outline-variant);border-radius:8px;padding:9px 14px;font-size:13px;width:320px;max-width:100%;font-family:inherit;}
+.looker-input-row input:focus{outline:none;border-color:var(--secondary);}
+.btn-connect{background:var(--secondary);color:#fff;border:none;border-radius:8px;padding:10px 20px;font-size:13px;font-weight:700;cursor:pointer;font-family:inherit;}
+.btn-connect:hover{background:var(--secondary-dark);}
+#looker-embed iframe{width:100%;height:620px;border:none;border-radius:8px;}
+.btn-disconnect{background:none;border:none;color:var(--on-surface-variant);font-size:12px;cursor:pointer;text-decoration:underline;font-family:inherit;margin-top:10px;}
+
+/* EVENTS TABLE */
+.tbl{width:100%;border-collapse:collapse;font-size:13px;}
+.tbl th{text-align:left;padding:10px 14px;font-size:11px;color:var(--on-surface-variant);text-transform:uppercase;letter-spacing:0.4px;border-bottom:1px solid var(--outline-variant);font-weight:600;}
+.tbl td{padding:10px 14px;border-bottom:1px solid #F5EDE8;}
+.tbl tr:last-child td{border:none;}
+.evt{display:inline-flex;align-items:center;padding:2px 9px;border-radius:10px;font-size:11px;font-weight:700;}
+.evt-quiz_complete{background:var(--secondary-container);color:var(--secondary-dark);}
+.evt-quiz_start{background:#E8F5E9;color:#1B5E20;}
+.evt-quiz_answer{background:#F3E5F5;color:#4A148C;}
+.evt-share_click{background:var(--primary-container);color:var(--primary-dark);}
+.evt-steun_click{background:#FFF3CD;color:#856404;}
+.evt-checklist_print{background:#E3F2FD;color:#0D47A1;}
+.evt-checklist_copy{background:#E8F5E9;color:#1B5E20;}
+.evt-other{background:#F0F0F0;color:#555;}
+
+/* UTM TABLE */
+.utm-tbl{width:100%;border-collapse:collapse;font-size:13px;}
+.utm-tbl th{text-align:left;padding:9px 14px;font-size:11px;color:var(--on-surface-variant);text-transform:uppercase;letter-spacing:0.4px;border-bottom:1px solid var(--outline-variant);font-weight:600;}
+.utm-tbl td{padding:9px 14px;border-bottom:1px solid #F5EDE8;}
+.utm-tbl tr:last-child td{border:none;}
+.pb-outer{background:#EDE0DB;border-radius:4px;height:6px;min-width:80px;}
+.pb-inner{height:6px;border-radius:4px;background:var(--primary);transition:width 0.4s;}
+
+/* SETUP GUIDE */
+.setup-guide{background:#fff;border-radius:16px;border:1px solid rgba(0,0,0,0.055);padding:24px;margin-top:28px;}
+.setup-guide>h2{font-size:15px;font-weight:700;margin-bottom:6px;}
+.setup-guide>p{font-size:13px;color:var(--on-surface-variant);margin-bottom:20px;line-height:1.6;}
+.steps{display:flex;flex-direction:column;gap:18px;}
+.step{display:flex;gap:14px;align-items:flex-start;}
+.step-n{width:28px;height:28px;border-radius:50%;background:var(--primary-container);color:var(--primary-dark);font-weight:800;font-size:13px;display:flex;align-items:center;justify-content:center;flex-shrink:0;margin-top:1px;}
+.step-n.done{background:var(--secondary-container);color:var(--secondary-dark);}
+.step h4{font-size:14px;font-weight:700;margin-bottom:4px;}
+.step p{font-size:13px;color:var(--on-surface-variant);line-height:1.65;}
+.step a{color:var(--primary-dark);}
+pre.code-block{background:var(--surface-container);padding:14px 16px;border-radius:8px;font-size:12px;margin-top:10px;overflow-x:auto;line-height:1.65;border:1px solid var(--outline-variant);}
+code{background:var(--surface-container);padding:2px 6px;border-radius:4px;font-size:12px;}
+.events-list{font-size:13px;color:var(--on-surface-variant);margin-top:8px;padding-left:18px;line-height:1.9;}
+
+/* RESPONSIVE */
+@media(max-width:640px){
+  .main{padding:14px;}
+  .kpi-grid{grid-template-columns:repeat(2,1fr);gap:10px;}
+  .kpi-val{font-size:26px;}
+  .header{padding:12px 16px;}
+}
+</style>
+</head>
+<body>
+
+<div class="header">
+  <div class="header-left">
+    <span class="material-symbols-outlined" style="font-size:24px">celebration</span>
+    <div>
+      <h1>Feestje zonder Zorgen — Dashboard</h1>
+      <small id="last-refresh">Laden…</small>
+    </div>
+  </div>
+  <div style="display:flex;gap:10px;align-items:center">
+    <span style="font-size:12px;opacity:0.75" id="header-meta"></span>
+    <button class="refresh-btn" onclick="loadAll()">
+      <span class="material-symbols-outlined" style="font-size:16px">refresh</span>
+      Verversen
+    </button>
+  </div>
+</div>
+
+<div class="setup-banner" id="setup-banner">
+  <span class="material-symbols-outlined" style="font-size:16px">info</span>
+  <strong>Tip:</strong> GA4 nog niet gekoppeld — bereikdata toont "—". Engagement en conversie worden al bijgehouden via lokale events op dit apparaat.
+  <button class="setup-link" onclick="document.getElementById('setup-guide').scrollIntoView({behavior:'smooth'})">Zie setup-instructies ↓</button>
+</div>
+
+<div class="main">
+
+  <!-- Periode -->
+  <div class="period-bar">
+    <span class="period-label">Periode:</span>
+    <button class="period-btn active" onclick="setPeriod('today',this)">Vandaag</button>
+    <button class="period-btn" onclick="setPeriod('7d',this)">7 dagen</button>
+    <button class="period-btn" onclick="setPeriod('30d',this)">30 dagen</button>
+    <button class="period-btn" onclick="setPeriod('all',this)">Alles</button>
+    <span id="data-src-note">Bron: lokale events (dit apparaat) + handmatige Instagram-invoer</span>
+  </div>
+
+  <!-- BEREIK -->
+  <div class="sec-head">
+    <span class="material-symbols-outlined" style="color:var(--accent)">visibility</span>
+    <h2>Bereik</h2>
+    <span class="badge badge-setup" id="reach-badge">Koppel GA4 voor website-bereik</span>
+  </div>
+  <div class="kpi-grid">
+    <div class="kpi reach">
+      <div class="kpi-label">Bezoekers</div>
+      <div class="kpi-val na" id="kpi-bezoekers">—</div>
+      <div class="kpi-src"><span class="dot dot-grey"></span>Verbind GA4</div>
+    </div>
+    <div class="kpi reach">
+      <div class="kpi-label">Sessies</div>
+      <div class="kpi-val na" id="kpi-sessies">—</div>
+      <div class="kpi-src"><span class="dot dot-grey"></span>Verbind GA4</div>
+    </div>
+    <div class="kpi reach">
+      <div class="kpi-label">Instagram bereik</div>
+      <div class="kpi-val na" id="kpi-ig-bereik">—</div>
+      <div class="kpi-src"><span class="dot dot-grey" id="ig-bereik-dot"></span><span id="ig-bereik-src">Vul in hieronder</span></div>
+    </div>
+    <div class="kpi reach">
+      <div class="kpi-label">Instagram volgers</div>
+      <div class="kpi-val na" id="kpi-ig-volgers">—</div>
+      <div class="kpi-src"><span class="dot dot-grey" id="ig-volgers-dot"></span><span id="ig-volgers-src">Vul in hieronder</span></div>
+    </div>
+  </div>
+
+  <!-- ENGAGEMENT -->
+  <div class="sec-head">
+    <span class="material-symbols-outlined" style="color:var(--secondary)">touch_app</span>
+    <h2>Engagement</h2>
+    <span class="badge badge-live" id="engage-badge">Live — lokale events</span>
+  </div>
+  <div class="kpi-grid">
+    <div class="kpi engage">
+      <div class="kpi-label">Quiz gestarts</div>
+      <div class="kpi-val" id="kpi-quiz-start">0</div>
+      <div class="kpi-src"><span class="dot dot-green"></span>Lokale events</div>
+    </div>
+    <div class="kpi engage">
+      <div class="kpi-label">Quiz voltooid</div>
+      <div class="kpi-val" id="kpi-quiz-done">0</div>
+      <div class="kpi-src"><span class="dot dot-green"></span>Lokale events</div>
+    </div>
+    <div class="kpi engage">
+      <div class="kpi-label">Gemiddelde score</div>
+      <div class="kpi-val na" id="kpi-avg-score">—</div>
+      <div class="kpi-sub" id="kpi-score-dist"></div>
+      <div class="kpi-src"><span class="dot dot-green"></span>Lokale events</div>
+    </div>
+    <div class="kpi engage">
+      <div class="kpi-label">Steun-klikken</div>
+      <div class="kpi-val" id="kpi-steun">0</div>
+      <div class="kpi-src"><span class="dot dot-green"></span>Lokale events</div>
+    </div>
+  </div>
+
+  <!-- CONVERSIE -->
+  <div class="sec-head">
+    <span class="material-symbols-outlined" style="color:var(--primary)">moving</span>
+    <h2>Conversie</h2>
+    <span class="badge badge-live">Live — lokale events</span>
+  </div>
+  <div class="kpi-grid">
+    <div class="kpi convert">
+      <div class="kpi-label">Quiz conv. rate</div>
+      <div class="kpi-val na" id="kpi-conv">—</div>
+      <div class="kpi-sub">Gestarts → Voltooid</div>
+      <div class="kpi-src"><span class="dot dot-green"></span>Lokale events</div>
+    </div>
+    <div class="kpi convert">
+      <div class="kpi-label">WhatsApp deels</div>
+      <div class="kpi-val" id="kpi-wa">0</div>
+      <div class="kpi-src"><span class="dot dot-green"></span>Lokale events</div>
+    </div>
+    <div class="kpi convert">
+      <div class="kpi-label">Email deels</div>
+      <div class="kpi-val" id="kpi-email">0</div>
+      <div class="kpi-src"><span class="dot dot-green"></span>Lokale events</div>
+    </div>
+    <div class="kpi convert">
+      <div class="kpi-label">Native/Copy deels</div>
+      <div class="kpi-val" id="kpi-other">0</div>
+      <div class="kpi-src"><span class="dot dot-green"></span>Lokale events</div>
+    </div>
+  </div>
+
+  <!-- KANALEN (UTM) -->
+  <div class="sec-head">
+    <span class="material-symbols-outlined" style="color:var(--secondary)">alt_route</span>
+    <h2>Kanalen — UTM-overzicht</h2>
+    <span class="badge badge-setup">GA4 nodig voor sessie-aantallen</span>
+  </div>
+  <div class="card">
+    <table class="utm-tbl">
+      <thead><tr>
+        <th>Kanaal</th>
+        <th>utm_medium</th>
+        <th>utm_campaign</th>
+        <th>Sessies</th>
+        <th>Aandeel</th>
+      </tr></thead>
+      <tbody id="utm-tbody">
+        <tr><td>WhatsApp (algemeen)</td><td>whatsapp</td><td style="font-family:monospace;font-size:12px">fzz-v6</td><td>—</td><td><div class="pb-outer"><div class="pb-inner" style="width:0"></div></div></td></tr>
+        <tr><td>WhatsApp (checklist)</td><td>whatsapp</td><td style="font-family:monospace;font-size:12px">checklist-v6</td><td>—</td><td><div class="pb-outer"><div class="pb-inner" style="width:0"></div></div></td></tr>
+        <tr><td>Instagram bio</td><td>bio</td><td style="font-family:monospace;font-size:12px">fzz-v6</td><td>—</td><td><div class="pb-outer"><div class="pb-inner" style="width:0"></div></div></td></tr>
+        <tr><td>E-mail</td><td>email</td><td style="font-family:monospace;font-size:12px">fzz-v6</td><td>—</td><td><div class="pb-outer"><div class="pb-inner" style="width:0"></div></div></td></tr>
+        <tr><td>LinkedIn</td><td>social</td><td style="font-family:monospace;font-size:12px">fzz-v6</td><td>—</td><td><div class="pb-outer"><div class="pb-inner" style="width:0"></div></div></td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <!-- INSTAGRAM HANDMATIG -->
+  <div class="sec-head">
+    <span class="material-symbols-outlined" style="color:#E1306C">photo_camera</span>
+    <h2>Instagram Insights — handmatig bijwerken</h2>
+    <span class="badge badge-manual">Wekelijks invullen</span>
+  </div>
+  <div class="card card-body">
+    <p style="font-size:13px;color:var(--on-surface-variant);margin-bottom:16px;line-height:1.6">
+      Haal deze cijfers op via Instagram → jouw profiel → <strong>Inzichten bekijken</strong>. Ze worden opgeslagen in je browser en weergegeven in de KPI-kaarten hierboven.
+    </p>
+    <div class="ig-grid">
+      <div class="ig-field"><label>Volgers</label><input type="number" id="ig-volgers" placeholder="0" min="0"></div>
+      <div class="ig-field"><label>Bereik (7 dagen)</label><input type="number" id="ig-bereik" placeholder="0" min="0"></div>
+      <div class="ig-field"><label>Impressies (7 dagen)</label><input type="number" id="ig-impressies" placeholder="0" min="0"></div>
+      <div class="ig-field"><label>Profielbezoeken (7d)</label><input type="number" id="ig-profiel" placeholder="0" min="0"></div>
+      <div class="ig-field"><label>Link-klikken (7d)</label><input type="number" id="ig-links" placeholder="0" min="0"></div>
+    </div>
+    <div style="display:flex;align-items:center;gap:14px;margin-top:18px">
+      <button class="btn-save" onclick="saveIg()">Opslaan</button>
+      <span class="saved-note" id="ig-saved">✓ Instagram-data opgeslagen</span>
+    </div>
+  </div>
+
+  <!-- RECENTE EVENTS -->
+  <div class="sec-head">
+    <span class="material-symbols-outlined" style="color:var(--on-surface-variant)">history</span>
+    <h2>Recente events — dit apparaat</h2>
+    <span class="badge badge-live">Real-time</span>
+  </div>
+  <div class="card" style="overflow-x:auto">
+    <table class="tbl">
+      <thead><tr>
+        <th>Tijdstip</th>
+        <th>Event</th>
+        <th>Details</th>
+      </tr></thead>
+      <tbody id="events-tbody">
+        <tr><td colspan="3" style="padding:20px 14px;color:#aaa;font-size:13px">Nog geen events op dit apparaat. Doe de quiz op de website en kom dan terug.</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <!-- LOOKER STUDIO -->
+  <div class="sec-head">
+    <span class="material-symbols-outlined" style="color:var(--secondary)">bar_chart</span>
+    <h2>Looker Studio — historisch overzicht</h2>
+    <span class="badge badge-setup" id="looker-badge">Nog niet verbonden</span>
+  </div>
+  <div class="card card-body" id="looker-section">
+    <div id="looker-placeholder">
+      <div class="looker-placeholder">
+        <span class="material-symbols-outlined icon">bar_chart</span>
+        <h3>Looker Studio rapport verbinden</h3>
+        <p>Maak een gratis Looker Studio rapport op basis van je GA4 data en plak de embed-URL hieronder. Zie de setup-instructies voor stap-voor-stap uitleg.</p>
+        <div class="looker-input-row">
+          <input type="text" id="looker-url" placeholder="https://lookerstudio.google.com/embed/reporting/...">
+          <button class="btn-connect" onclick="saveLooker()">Verbinden</button>
+        </div>
+      </div>
+    </div>
+    <div id="looker-embed" style="display:none">
+      <iframe id="looker-iframe" src="" allowfullscreen title="Looker Studio rapport — Feestje zonder Zorgen"></iframe>
+      <button class="btn-disconnect" onclick="disconnectLooker()">Verbinding verwijderen</button>
+    </div>
+  </div>
+
+  <!-- SETUP GUIDE -->
+  <div class="setup-guide" id="setup-guide">
+    <h2>
+      <span class="material-symbols-outlined" style="vertical-align:middle;font-size:20px;margin-right:6px">settings</span>
+      Setup-instructies (±30 min)
+    </h2>
+    <p>Volg deze stappen om van lokale events naar echte cross-device, real-time data te gaan.</p>
+    <div class="steps">
+
+      <div class="step">
+        <div class="step-n done">✓</div>
+        <div>
+          <h4>Website live + UTM-tags geconfigureerd</h4>
+          <p>Website staat live op <a href="https://dturk1306.github.io/feestjezonderzorgen/" target="_blank">dturk1306.github.io/feestjezonderzorgen/</a>. UTM-tags actief voor WhatsApp, email, Instagram bio en LinkedIn.</p>
+        </div>
+      </div>
+
+      <div class="step">
+        <div class="step-n done">✓</div>
+        <div>
+          <h4>Instagram pagina aangemaakt</h4>
+          <p>Actief op <a href="https://www.instagram.com/feestjezonderzorgen/" target="_blank">@feestjezonderzorgen</a>. Zet het account om naar een <strong>Zakelijk</strong> of <strong>Creator</strong>-profiel om toegang te krijgen tot Inzichten en link-tracking.</p>
+        </div>
+      </div>
+
+      <div class="step">
+        <div class="step-n done">✓</div>
+        <div>
+          <h4>Tracking-code in index.html</h4>
+          <p>De <code>fzzTrack()</code>-functie staat in <code>index.html</code> en slaat events op in localStorage én stuurt ze door naar GA4 (zodra GA4 gekoppeld is). Events: <code>quiz_start</code>, <code>quiz_answer</code>, <code>quiz_complete</code>, <code>share_click</code>, <code>steun_click</code>, <code>checklist_print</code>, <code>checklist_copy</code>.</p>
+        </div>
+      </div>
+
+      <div class="step">
+        <div class="step-n">4</div>
+        <div>
+          <h4>GA4 property aanmaken</h4>
+          <p>Ga naar <a href="https://analytics.google.com" target="_blank">analytics.google.com</a> → <strong>Beheer</strong> (tandwiel) → <strong>+ Property aanmaken</strong> → selecteer <strong>Web</strong> → vul de website-URL in. Noteer je <strong>Measurement ID</strong> (formaat: <code>G-XXXXXXXXXX</code>).</p>
+        </div>
+      </div>
+
+      <div class="step">
+        <div class="step-n">5</div>
+        <div>
+          <h4>GA4 Measurement ID toevoegen aan index.html</h4>
+          <p>Open <code>index.html</code> en vervang de twee plekken waar <code>G-XXXXXXXXXX</code> staat door jouw echte Measurement ID. Zoek op <code>G-XXXXXXXXXX</code> in de broncode — je vindt het in de GA4-scripttags bovenaan.</p>
+          <pre class="code-block">&lt;!-- GA4 — vervang G-XXXXXXXXXX door jouw Measurement ID --&gt;
+&lt;script async src="https://www.googletagmanager.com/gtag/js?id=G-XXXXXXXXXX"&gt;&lt;/script&gt;
+&lt;script&gt;
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', 'G-XXXXXXXXXX');
+&lt;/script&gt;</pre>
+        </div>
+      </div>
+
+      <div class="step">
+        <div class="step-n">6</div>
+        <div>
+          <h4>Custom events verifiëren in GA4</h4>
+          <p>Na 24-48 uur verschijnen de events in GA4 → <strong>Rapporten → Betrokkenheid → Events</strong>. Je ziet:</p>
+          <ul class="events-list">
+            <li><code>quiz_start</code> — quiz-sectie scrolt in beeld</li>
+            <li><code>quiz_answer</code> — antwoord gegeven (met <code>question</code>, <code>correct</code>)</li>
+            <li><code>quiz_complete</code> — quiz afgerond (met <code>score</code> en <code>total</code>)</li>
+            <li><code>share_click</code> — gedeeld, met parameter <code>channel</code> (whatsapp / checklist_whatsapp / email / native / copy)</li>
+            <li><code>steun_click</code> — steun-knop geklikt</li>
+            <li><code>checklist_print</code> / <code>checklist_copy</code> — checklist gedownload</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="step">
+        <div class="step-n">7</div>
+        <div>
+          <h4>Looker Studio rapport aanmaken</h4>
+          <p>Ga naar <a href="https://lookerstudio.google.com" target="_blank">lookerstudio.google.com</a> → <strong>Leeg rapport</strong> → <strong>Gegevensbron toevoegen</strong> → <strong>Google Analytics</strong> → selecteer je FZZ property. Voeg metrics toe: <em>Sessies, Actieve gebruikers, Events (per event-naam), UTM-campagne-uitsplitsing</em>. Publiceer het rapport → <strong>Delen → Insluiten</strong> → kopieer de embed-URL → plak in het veld hierboven.</p>
+        </div>
+      </div>
+
+      <div class="step">
+        <div class="step-n">8</div>
+        <div>
+          <h4>Instagram Insights — wekelijks bijwerken</h4>
+          <p>Open Instagram → jouw profiel → <strong>Inzichten bekijken</strong>. Noteer: Bereik, Impressies, Profielbezoeken, Link-klikken. Vul in via het formulier hierboven. Tip: agenda-herhaling elke maandag.</p>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+  <div style="height:48px"></div>
+</div>
+
+<script>
+/* ==========================================================
+   FZZ DASHBOARD
+   - Leest fzz_events_v1 uit localStorage (zelfde origin)
+   - Instagram via handmatig formulier (opgeslagen in localStorage)
+   - Looker Studio embed via localStorage
+   - Auto-refresh elke 30 seconden
+   ========================================================== */
+
+var currentPeriod = 'today';
+
+function setPeriod(p, btn) {
+  currentPeriod = p;
+  document.querySelectorAll('.period-btn').forEach(function(b){ b.classList.remove('active'); });
+  btn.classList.add('active');
+  loadAll();
+}
+
+function getEvents() {
+  try { return JSON.parse(localStorage.getItem('fzz_events_v1') || '[]'); } catch(e){ return []; }
+}
+
+function cutoffMs() {
+  var now = Date.now();
+  return {'today': now - 86400000, '7d': now - 7*86400000, '30d': now - 30*86400000, 'all': 0}[currentPeriod] || 0;
+}
+
+function filterPeriod(events) {
+  var c = cutoffMs();
+  return events.filter(function(e){ return (e.ts || 0) >= c; });
+}
+
+function n(x){ return x.toLocaleString('nl-NL'); }
+
+function loadAll() {
+  var all = getEvents();
+  var ev = filterPeriod(all);
+
+  /* Quiz */
+  var starts = ev.filter(function(e){ return e.type==='quiz_start'; }).length;
+  var dones  = ev.filter(function(e){ return e.type==='quiz_complete'; });
+  document.getElementById('kpi-quiz-start').textContent = n(starts);
+  document.getElementById('kpi-quiz-done').textContent  = n(dones.length);
+
+  if (dones.length > 0) {
+    var totScore = dones.reduce(function(s,e){ return s + ((e.params && e.params.score) || 0); }, 0);
+    var avg = (totScore / dones.length).toFixed(1);
+    var perfect = dones.filter(function(e){ return e.params && e.params.score === 5; }).length;
+    document.getElementById('kpi-avg-score').textContent = avg + '/5';
+    document.getElementById('kpi-avg-score').classList.remove('na');
+    document.getElementById('kpi-score-dist').textContent = perfect + ' van ' + dones.length + ' perfect';
+  } else {
+    document.getElementById('kpi-avg-score').textContent = '—';
+    document.getElementById('kpi-avg-score').classList.add('na');
+    document.getElementById('kpi-score-dist').textContent = '';
+  }
+
+  /* Conversion rate */
+  var convEl = document.getElementById('kpi-conv');
+  if (starts > 0) {
+    var rate = Math.round(dones.length / starts * 100);
+    convEl.textContent = rate + '%';
+    convEl.classList.remove('na');
+  } else {
+    convEl.textContent = '—';
+    convEl.classList.add('na');
+  }
+
+  /* Shares */
+  var shares = ev.filter(function(e){ return e.type==='share_click'; });
+  var wa    = shares.filter(function(e){ return e.params && (e.params.channel==='whatsapp'||e.params.channel==='checklist_whatsapp'); }).length;
+  var email = shares.filter(function(e){ return e.params && e.params.channel==='email'; }).length;
+  var other = shares.filter(function(e){ return e.params && (e.params.channel==='native'||e.params.channel==='copy'); }).length;
+  document.getElementById('kpi-wa').textContent    = n(wa);
+  document.getElementById('kpi-email').textContent  = n(email);
+  document.getElementById('kpi-other').textContent  = n(other);
+
+  /* Steun */
+  var steun = ev.filter(function(e){ return e.type==='steun_click'; }).length;
+  document.getElementById('kpi-steun').textContent = n(steun);
+
+  /* Instagram */
+  loadIg();
+
+  /* Recent events */
+  renderEvents(all.slice(-25).reverse());
+
+  /* Header */
+  document.getElementById('last-refresh').textContent =
+    'Bijgewerkt: ' + new Date().toLocaleTimeString('nl-NL',{hour:'2-digit',minute:'2-digit',second:'2-digit'});
+  document.getElementById('header-meta').textContent = n(all.length) + ' events totaal';
+
+  /* Setup banner: verberg als er al events zijn */
+  var banner = document.getElementById('setup-banner');
+  if (all.length > 0) banner.classList.add('hidden');
+  else banner.classList.remove('hidden');
+}
+
+/* EVENT-TYPE LABEL */
+var evtLabels = {
+  quiz_start: 'Quiz gestart', quiz_complete: 'Quiz voltooid', quiz_answer: 'Antwoord gegeven',
+  share_click: 'Gedeeld', steun_click: 'Steun', checklist_print: 'Checklist print',
+  checklist_copy: 'Checklist gekopieerd'
+};
+var evtClasses = {
+  quiz_start:'evt-quiz_start', quiz_complete:'evt-quiz_complete', quiz_answer:'evt-quiz_answer',
+  share_click:'evt-share_click', steun_click:'evt-steun_click',
+  checklist_print:'evt-checklist_print', checklist_copy:'evt-checklist_copy'
+};
+
+function renderEvents(events) {
+  var tbody = document.getElementById('events-tbody');
+  if (!events.length) {
+    tbody.innerHTML = '<tr><td colspan="3" style="padding:20px 14px;color:#aaa;font-size:13px">Nog geen events op dit apparaat. Doe de quiz op de website en kom hier terug.</td></tr>';
+    return;
+  }
+  tbody.innerHTML = events.map(function(e) {
+    var cls   = evtClasses[e.type] || 'evt-other';
+    var label = evtLabels[e.type]  || e.type;
+    var details = '';
+    if (e.params) {
+      if (e.type==='quiz_complete') details = 'Score ' + e.params.score + '/' + e.params.total + (e.params.perfect?' — perfect':'');
+      else if (e.type==='share_click') details = 'Kanaal: ' + (e.params.channel||'—');
+      else if (e.type==='quiz_answer') details = 'V' + e.params.question + ' — ' + (e.params.correct ? '✓ goed' : '✗ fout');
+      else if (e.type==='steun_click') details = e.params.name==='named' ? 'Met naam' : 'Anoniem';
+    }
+    var t = e.ts ? new Date(e.ts).toLocaleString('nl-NL',{day:'2-digit',month:'2-digit',hour:'2-digit',minute:'2-digit'}) : '—';
+    return '<tr>' +
+      '<td style="color:var(--on-surface-variant);font-size:12px;white-space:nowrap">' + t + '</td>' +
+      '<td><span class="evt ' + cls + '">' + label + '</span></td>' +
+      '<td style="color:var(--on-surface-variant);font-size:12px">' + details + '</td>' +
+      '</tr>';
+  }).join('');
+}
+
+/* INSTAGRAM */
+function loadIg() {
+  try {
+    var ig = JSON.parse(localStorage.getItem('fzz_ig_v1')||'{}');
+    if (ig.volgers) {
+      document.getElementById('kpi-ig-volgers').textContent = n(ig.volgers);
+      document.getElementById('kpi-ig-volgers').classList.remove('na');
+      document.getElementById('ig-volgers-dot').className = 'dot dot-green';
+      document.getElementById('ig-volgers-src').textContent = 'Bijgewerkt ' + (ig.savedAt ? new Date(ig.savedAt).toLocaleDateString('nl-NL') : '');
+    }
+    if (ig.bereik) {
+      document.getElementById('kpi-ig-bereik').textContent = n(ig.bereik);
+      document.getElementById('kpi-ig-bereik').classList.remove('na');
+      document.getElementById('ig-bereik-dot').className = 'dot dot-green';
+      document.getElementById('ig-bereik-src').textContent = 'Bereik 7 dagen';
+    }
+    ['volgers','bereik','impressies','profiel','links'].forEach(function(k){
+      var el = document.getElementById('ig-'+k);
+      if (el && ig[k]) el.value = ig[k];
+    });
+  } catch(e){}
+}
+
+function saveIg() {
+  try {
+    var ig = {
+      volgers:     parseInt(document.getElementById('ig-volgers').value)||0,
+      bereik:      parseInt(document.getElementById('ig-bereik').value)||0,
+      impressies:  parseInt(document.getElementById('ig-impressies').value)||0,
+      profiel:     parseInt(document.getElementById('ig-profiel').value)||0,
+      links:       parseInt(document.getElementById('ig-links').value)||0,
+      savedAt:     Date.now()
+    };
+    localStorage.setItem('fzz_ig_v1', JSON.stringify(ig));
+    var note = document.getElementById('ig-saved');
+    note.style.display = 'block';
+    setTimeout(function(){ note.style.display='none'; }, 3000);
+    loadAll();
+  } catch(e){}
+}
+
+/* LOOKER STUDIO */
+function saveLooker() {
+  var url = (document.getElementById('looker-url').value||'').trim();
+  if (!url) return;
+  localStorage.setItem('fzz_looker_url', url);
+  activateLooker(url);
+}
+function activateLooker(url) {
+  document.getElementById('looker-placeholder').style.display = 'none';
+  document.getElementById('looker-embed').style.display = 'block';
+  document.getElementById('looker-iframe').src = url;
+  document.getElementById('looker-badge').textContent = 'Verbonden';
+  document.getElementById('looker-badge').className = 'badge badge-live';
+}
+function disconnectLooker() {
+  localStorage.removeItem('fzz_looker_url');
+  document.getElementById('looker-placeholder').style.display = 'block';
+  document.getElementById('looker-embed').style.display = 'none';
+  document.getElementById('looker-iframe').src = '';
+  document.getElementById('looker-badge').textContent = 'Nog niet verbonden';
+  document.getElementById('looker-badge').className = 'badge badge-setup';
+}
+(function initLooker(){
+  var u = localStorage.getItem('fzz_looker_url');
+  if (u) activateLooker(u);
+})();
+
+/* AUTO-REFRESH */
+setInterval(loadAll, 30000);
+
+/* INIT */
+loadAll();
+</script>
+</body>
+</html>

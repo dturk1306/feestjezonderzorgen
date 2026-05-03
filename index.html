@@ -26,6 +26,15 @@
 <link href="https://fonts.googleapis.com/css2?family=Lexend:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
 <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet">
 
+<!-- Google Analytics 4 — vervang G-VVEHLCKC5Q door jouw Measurement ID -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-VVEHLCKC5Q"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', 'G-VVEHLCKC5Q');
+</script>
+
 <!-- GEO: Structured data voor AI-zoekmachines -->
 <script type="application/ld+json">
 {
@@ -970,11 +979,11 @@ footer a { color: var(--outline); }
 
       <div class="checklist-actions hide-print">
         <a href="https://wa.me/?text=H%C3%A9%20-%20checklist%20voor%20een%20feestje%20met%20iemand%20met%20pinda-allergie.%20Doe%20de%203-min%20quiz%20en%20krijg%20de%20checklist%3A%20https%3A%2F%2Fdaanturk.github.io%2Ffeestje-zonder-zorgen%2F%3Futm_source%3Dshare%26utm_medium%3Dwhatsapp%26utm_campaign%3Dchecklist-v6"
-           target="_blank" rel="noopener" class="btn-secondary btn-wa">
+           target="_blank" rel="noopener" class="btn-secondary btn-wa" onclick="fzzTrack('share_click',{channel:'checklist_whatsapp'})">
           <span class="material-symbols-outlined" style="font-size:18px">chat</span>
           Stuur via WhatsApp
         </a>
-        <button class="btn-secondary" onclick="window.print()">
+        <button class="btn-secondary" onclick="fzzTrack('checklist_print',{});window.print()">
           <span class="material-symbols-outlined" style="font-size:18px">print</span>
           Print
         </button>
@@ -1154,7 +1163,7 @@ footer a { color: var(--outline); }
       <p class="share-label">Of share de pagina met een vriend(in):</p>
       <div class="share-row">
         <a href="https://wa.me/?text=H%C3%A9%20-%20handige%203-min%20quiz%20%2B%20checklist%20voor%20als%20iemand%20op%20een%20feestje%20een%20pinda-allergie%20heeft%3A%20https%3A%2F%2Fdaanturk.github.io%2Ffeestje-zonder-zorgen%2F%3Futm_source%3Dshare%26utm_medium%3Dwhatsapp%26utm_campaign%3Dfzz-v6"
-           target="_blank" rel="noopener" class="share-btn wa" aria-label="Deel via WhatsApp">
+           target="_blank" rel="noopener" class="share-btn wa" aria-label="Deel via WhatsApp" onclick="fzzTrack('share_click',{channel:'whatsapp'})">
           <span class="material-symbols-outlined">chat</span>
         </a>
         <button class="share-btn" id="share-native" aria-label="Delen">
@@ -1164,7 +1173,7 @@ footer a { color: var(--outline); }
           <span class="material-symbols-outlined">link</span>
         </button>
         <a href="mailto:?subject=Feestje%20zonder%20zorg%20%E2%80%94%20quiz%20voor%20vrienden&body=H%C3%A9%2C%20handige%203-min%20quiz%20voor%20als%20iemand%20op%20een%20feestje%20een%20pinda-allergie%20heeft%3A%20https%3A%2F%2Fdaanturk.github.io%2Ffeestje-zonder-zorgen%2F%3Futm_source%3Dshare%26utm_medium%3Demail%26utm_campaign%3Dfzz-v6"
-           class="share-btn" aria-label="Deel via e-mail">
+           class="share-btn" aria-label="Deel via e-mail" onclick="fzzTrack('share_click',{channel:'email'})">
           <span class="material-symbols-outlined">mail</span>
         </a>
       </div>
@@ -1278,6 +1287,28 @@ footer a { color: var(--outline); }
 <div class="toast" id="toast" role="status" aria-live="polite">Link gekopieerd</div>
 
 <script>
+/* ============== FZZ TRACKING ============== */
+function fzzTrack(type, params) {
+  try {
+    var ev = JSON.parse(localStorage.getItem('fzz_events_v1') || '[]');
+    ev.push({type: type, ts: Date.now(), params: params || {}});
+    if (ev.length > 2000) ev = ev.slice(-2000);
+    localStorage.setItem('fzz_events_v1', JSON.stringify(ev));
+  } catch(x) {}
+  try { if (typeof gtag === 'function') gtag('event', type, params || {}); } catch(x) {}
+}
+// quiz_start: eenmalig zodra de quiz-sectie in beeld komt
+(function() {
+  var fired = false;
+  var obs = new IntersectionObserver(function(entries) {
+    entries.forEach(function(en) {
+      if (en.isIntersecting && !fired) { fired = true; fzzTrack('quiz_start', {}); }
+    });
+  }, {threshold: 0.3});
+  var el = document.getElementById('quiz-card');
+  if (el) obs.observe(el);
+})();
+
 /* ============== QUIZ DATA ============== */
 const QUESTIONS = [
   {
@@ -1416,6 +1447,7 @@ const QUESTIONS = [
 
     if (opt.correct) score++;
     scoreEl.textContent = 'Score: ' + score;
+    fzzTrack('quiz_answer', {question: idx + 1, correct: opt.correct, score: score});
 
     var fb = document.getElementById('q-feedback');
     fb.innerHTML = '<div class="quiz-feedback"><strong>' + (opt.correct ? '✓ Klopt.' : '✗ Net niet.') + '</strong> ' + opt.fb + '</div>';
@@ -1457,6 +1489,7 @@ const QUESTIONS = [
         '</a>' +
       '</div>';
 
+    fzzTrack('quiz_complete', {score: score, total: QUESTIONS.length, perfect: score === QUESTIONS.length});
     try {
       var done = JSON.parse(localStorage.getItem('fzz_completions') || '[]');
       done.push({date: new Date().toISOString(), score: score});
@@ -1482,14 +1515,17 @@ var shareText = 'Hé, handige 3-min quiz voor als iemand op een feestje een pind
 
 document.getElementById('share-native').addEventListener('click', async function(){
   if (navigator.share){
+    fzzTrack('share_click', {channel: 'native'});
     try { await navigator.share({title:'Feestje zonder zorg', text: shareText, url: shareUrl}); }
     catch(e){}
   } else {
+    fzzTrack('share_click', {channel: 'copy'});
     navigator.clipboard.writeText(shareUrl).then(function(){ showToast('Link gekopieerd'); });
   }
 });
 
 document.getElementById('copy-link').addEventListener('click', function(){
+  fzzTrack('share_click', {channel: 'copy'});
   navigator.clipboard.writeText(shareUrl).then(function(){ showToast('Link gekopieerd'); });
 });
 
@@ -1527,6 +1563,7 @@ document.getElementById('copy-link').addEventListener('click', function(){
 
   btn.addEventListener('click', function(){
     var naam = input.value.trim();
+    fzzTrack('steun_click', {name: naam ? 'named' : 'anon'});
     count++;
     tellerEl.textContent = count;
     recentNames.push(naam || 'Anoniem');
@@ -1552,6 +1589,7 @@ document.getElementById('copy-checklist').addEventListener('click', function(){
     });
   });
   var txt = 'Feestje zonder zorg — Vrienden-checklist' + lines.join('\n') + '\n\nMeer info: ' + shareUrl;
+  fzzTrack('checklist_copy', {});
   navigator.clipboard.writeText(txt).then(function(){ showToast('Checklist gekopieerd als tekst'); });
 });
 
