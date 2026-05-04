@@ -38,11 +38,6 @@ body{font-family:'Lexend',system-ui,sans-serif;background:var(--bg);color:var(--
 .refresh-btn{background:rgba(255,255,255,0.18);border:none;border-radius:8px;color:#fff;padding:7px 14px;font-size:13px;font-weight:600;cursor:pointer;display:flex;align-items:center;gap:6px;font-family:inherit;}
 .refresh-btn:hover{background:rgba(255,255,255,0.28);}
 
-/* SETUP BANNER */
-.setup-banner{background:#FFF3CD;border-bottom:1.5px solid #FFD066;padding:10px 24px;font-size:13px;display:flex;align-items:center;gap:8px;flex-wrap:wrap;}
-.setup-banner.hidden{display:none;}
-.setup-link{color:var(--primary-dark);font-weight:700;text-decoration:underline;cursor:pointer;background:none;border:none;font-family:inherit;font-size:13px;padding:0;}
-
 /* MAIN */
 .main{padding:24px;max-width:1400px;margin:0 auto;}
 
@@ -69,6 +64,7 @@ body{font-family:'Lexend',system-ui,sans-serif;background:var(--bg);color:var(--
 .kpi.reach::before{background:var(--accent);}
 .kpi.engage::before{background:var(--secondary);}
 .kpi.convert::before{background:var(--primary);}
+.kpi.search::before{background:#4285F4;}
 .kpi-label{font-size:11px;color:var(--on-surface-variant);font-weight:600;text-transform:uppercase;letter-spacing:0.5px;margin-bottom:8px;}
 .kpi-val{font-size:34px;font-weight:800;color:var(--on-surface);line-height:1;margin-bottom:3px;}
 .kpi-val.na{color:#C8BDB8;font-size:28px;}
@@ -77,20 +73,32 @@ body{font-family:'Lexend',system-ui,sans-serif;background:var(--bg);color:var(--
 .dot{width:7px;height:7px;border-radius:50%;flex-shrink:0;}
 .dot-green{background:#28a745;}
 .dot-yellow{background:#ffc107;}
+.dot-blue{background:#4285F4;}
 .dot-grey{background:#C8BDB8;}
 
 /* CARD WRAPPER */
 .card{background:#fff;border-radius:16px;border:1px solid rgba(0,0,0,0.055);overflow:hidden;}
 .card-body{padding:20px 24px;}
 
-/* IG INPUTS */
+/* IG + GSC INPUTS */
 .ig-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(170px,1fr));gap:12px;}
 .ig-field label{display:block;font-size:11px;font-weight:600;text-transform:uppercase;letter-spacing:0.4px;color:var(--on-surface-variant);margin-bottom:6px;}
 .ig-field input{width:100%;border:1.5px solid var(--outline-variant);border-radius:8px;padding:9px 12px;font-size:20px;font-weight:700;color:var(--on-surface);background:var(--surface);font-family:inherit;}
 .ig-field input:focus{outline:none;border-color:var(--primary);}
+.ig-field input.text-input{font-size:16px;}
 .btn-save{background:var(--primary);color:#fff;border:none;border-radius:8px;padding:10px 22px;font-size:14px;font-weight:700;cursor:pointer;font-family:inherit;}
 .btn-save:hover{background:var(--primary-dark);}
+.btn-save-blue{background:#4285F4;color:#fff;border:none;border-radius:8px;padding:10px 22px;font-size:14px;font-weight:700;cursor:pointer;font-family:inherit;}
+.btn-save-blue:hover{background:#2b6fd9;}
 .saved-note{font-size:12px;color:var(--success);font-weight:600;display:none;}
+
+/* GSC HISTORY TABLE */
+.gsc-tbl{width:100%;border-collapse:collapse;font-size:13px;margin-top:20px;}
+.gsc-tbl th{text-align:left;padding:9px 14px;font-size:11px;color:var(--on-surface-variant);text-transform:uppercase;letter-spacing:0.4px;border-bottom:1px solid var(--outline-variant);font-weight:600;}
+.gsc-tbl td{padding:9px 14px;border-bottom:1px solid #F5EDE8;}
+.gsc-tbl tr:last-child td{border:none;}
+.gsc-link{display:inline-flex;align-items:center;gap:5px;color:#4285F4;font-size:13px;font-weight:600;text-decoration:none;margin-top:14px;}
+.gsc-link:hover{text-decoration:underline;}
 
 /* LOOKER SECTION */
 .looker-placeholder{border:2px dashed var(--outline-variant);border-radius:12px;padding:36px 24px;text-align:center;background:var(--surface);}
@@ -107,19 +115,6 @@ body{font-family:'Lexend',system-ui,sans-serif;background:var(--bg);color:var(--
 .looker-error{display:none;background:#FFF3CD;border:1.5px solid #FFD066;border-radius:10px;padding:16px 20px;font-size:13px;line-height:1.6;margin-bottom:12px;}
 .looker-error strong{display:block;margin-bottom:6px;color:#856404;}
 .btn-disconnect{background:none;border:none;color:var(--on-surface-variant);font-size:12px;cursor:pointer;text-decoration:underline;font-family:inherit;margin-top:10px;}
-
-/* EXPORT / IMPORT */
-.data-share-bar{background:var(--surface-container);border-radius:10px;padding:12px 16px;display:flex;align-items:center;gap:12px;flex-wrap:wrap;margin-top:12px;}
-.data-share-bar p{font-size:12px;color:var(--on-surface-variant);flex:1;min-width:180px;}
-.btn-sm{padding:7px 14px;border-radius:7px;font-size:12px;font-weight:700;cursor:pointer;font-family:inherit;border:none;}
-.btn-export{background:var(--secondary);color:#fff;}
-.btn-export:hover{background:var(--secondary-dark);}
-.btn-import{background:#fff;color:var(--on-surface);border:1.5px solid var(--outline-variant);}
-.btn-import:hover{border-color:var(--outline);}
-.import-area{display:none;margin-top:10px;}
-.import-area textarea{width:100%;border:1.5px solid var(--outline-variant);border-radius:8px;padding:10px 12px;font-size:12px;font-family:monospace;min-height:80px;resize:vertical;}
-.import-area textarea:focus{outline:none;border-color:var(--secondary);}
-.device-note{font-size:11px;color:var(--on-surface-variant);background:var(--surface-container);border-radius:6px;padding:6px 10px;display:inline-flex;align-items:center;gap:5px;margin-top:8px;}
 
 /* EVENTS TABLE */
 .tbl{width:100%;border-collapse:collapse;font-size:13px;}
@@ -144,6 +139,18 @@ body{font-family:'Lexend',system-ui,sans-serif;background:var(--bg);color:var(--
 .pb-outer{background:#EDE0DB;border-radius:4px;height:6px;min-width:80px;}
 .pb-inner{height:6px;border-radius:4px;background:var(--primary);transition:width 0.4s;}
 
+/* EXPORT / IMPORT */
+.data-share-bar{background:var(--surface-container);border-radius:10px;padding:12px 16px;display:flex;align-items:center;gap:12px;flex-wrap:wrap;margin-top:12px;}
+.data-share-bar p{font-size:12px;color:var(--on-surface-variant);flex:1;min-width:180px;}
+.btn-sm{padding:7px 14px;border-radius:7px;font-size:12px;font-weight:700;cursor:pointer;font-family:inherit;border:none;}
+.btn-export{background:var(--secondary);color:#fff;}
+.btn-export:hover{background:var(--secondary-dark);}
+.btn-import{background:#fff;color:var(--on-surface);border:1.5px solid var(--outline-variant);}
+.btn-import:hover{border-color:var(--outline);}
+.import-area{display:none;margin-top:10px;}
+.import-area textarea{width:100%;border:1.5px solid var(--outline-variant);border-radius:8px;padding:10px 12px;font-size:12px;font-family:monospace;min-height:80px;resize:vertical;}
+.import-area textarea:focus{outline:none;border-color:var(--secondary);}
+
 /* SETUP GUIDE */
 .setup-guide{background:#fff;border-radius:16px;border:1px solid rgba(0,0,0,0.055);padding:24px;margin-top:28px;}
 .setup-guide>h2{font-size:15px;font-weight:700;margin-bottom:6px;}
@@ -158,6 +165,7 @@ body{font-family:'Lexend',system-ui,sans-serif;background:var(--bg);color:var(--
 pre.code-block{background:var(--surface-container);padding:14px 16px;border-radius:8px;font-size:12px;margin-top:10px;overflow-x:auto;line-height:1.65;border:1px solid var(--outline-variant);}
 code{background:var(--surface-container);padding:2px 6px;border-radius:4px;font-size:12px;}
 .events-list{font-size:13px;color:var(--on-surface-variant);margin-top:8px;padding-left:18px;line-height:1.9;}
+.setup-toggle{background:none;border:none;font-family:inherit;font-size:13px;color:var(--on-surface-variant);cursor:pointer;text-decoration:underline;margin-bottom:16px;padding:0;}
 
 /* RESPONSIVE */
 @media(max-width:640px){
@@ -187,12 +195,6 @@ code{background:var(--surface-container);padding:2px 6px;border-radius:4px;font-
   </div>
 </div>
 
-<div class="setup-banner" id="setup-banner">
-  <span class="material-symbols-outlined" style="font-size:16px">info</span>
-  <strong>Tip:</strong> GA4 nog niet gekoppeld — bereikdata toont "—". Engagement en conversie worden al bijgehouden via lokale events op dit apparaat.
-  <button class="setup-link" onclick="document.getElementById('setup-guide').scrollIntoView({behavior:'smooth'})">Zie setup-instructies ↓</button>
-</div>
-
 <div class="main">
 
   <!-- Periode -->
@@ -202,28 +204,38 @@ code{background:var(--surface-container);padding:2px 6px;border-radius:4px;font-
     <button class="period-btn" onclick="setPeriod('7d',this)">7 dagen</button>
     <button class="period-btn" onclick="setPeriod('30d',this)">30 dagen</button>
     <button class="period-btn" onclick="setPeriod('all',this)">Alles</button>
-    <span id="data-src-note">Bron: lokale events (dit apparaat) + handmatige Instagram-invoer</span>
+    <span id="data-src-note">Bron: GA4 (Looker Studio) · GSC · Instagram · lokale events</span>
   </div>
 
   <!-- BEREIK -->
   <div class="sec-head">
     <span class="material-symbols-outlined" style="color:var(--accent)">visibility</span>
     <h2>Bereik</h2>
-    <span class="badge badge-setup" id="reach-badge">Koppel GA4 voor website-bereik</span>
+    <span class="badge badge-live" id="reach-badge">GA4 + Looker Studio live</span>
   </div>
   <div class="kpi-grid">
     <div class="kpi reach">
       <div class="kpi-label">Bezoekers</div>
       <div class="kpi-val na" id="kpi-bezoekers">—</div>
-      <div class="kpi-src"><span class="dot dot-grey"></span>Verbind GA4</div>
+      <div class="kpi-src"><span class="dot dot-yellow"></span>Zie Looker Studio ↓</div>
     </div>
     <div class="kpi reach">
       <div class="kpi-label">Sessies</div>
       <div class="kpi-val na" id="kpi-sessies">—</div>
-      <div class="kpi-src"><span class="dot dot-grey"></span>Verbind GA4</div>
+      <div class="kpi-src"><span class="dot dot-yellow"></span>Zie Looker Studio ↓</div>
     </div>
     <div class="kpi reach">
-      <div class="kpi-label">Instagram bereik</div>
+      <div class="kpi-label">Organische klikken (28d)</div>
+      <div class="kpi-val na" id="kpi-gsc-clicks">—</div>
+      <div class="kpi-src"><span class="dot dot-blue" id="gsc-clicks-dot"></span><span id="gsc-clicks-src">Vul GSC in ↓</span></div>
+    </div>
+    <div class="kpi reach">
+      <div class="kpi-label">Zoekpositie (gem.)</div>
+      <div class="kpi-val na" id="kpi-gsc-pos">—</div>
+      <div class="kpi-src"><span class="dot dot-blue" id="gsc-pos-dot"></span><span id="gsc-pos-src">Vul GSC in ↓</span></div>
+    </div>
+    <div class="kpi reach">
+      <div class="kpi-label">Instagram bereik (7d)</div>
       <div class="kpi-val na" id="kpi-ig-bereik">—</div>
       <div class="kpi-src"><span class="dot dot-grey" id="ig-bereik-dot"></span><span id="ig-bereik-src">Vul in hieronder</span></div>
     </div>
@@ -298,7 +310,7 @@ code{background:var(--surface-container);padding:2px 6px;border-radius:4px;font-
   <div class="sec-head">
     <span class="material-symbols-outlined" style="color:var(--secondary)">alt_route</span>
     <h2>Kanalen — UTM-overzicht</h2>
-    <span class="badge badge-setup">GA4 nodig voor sessie-aantallen</span>
+    <span class="badge badge-live">GA4 via Looker Studio ↓</span>
   </div>
   <div class="card">
     <table class="utm-tbl">
@@ -315,6 +327,7 @@ code{background:var(--surface-container);padding:2px 6px;border-radius:4px;font-
         <tr><td>Instagram bio</td><td>bio</td><td style="font-family:monospace;font-size:12px">fzz-v6</td><td>—</td><td><div class="pb-outer"><div class="pb-inner" style="width:0"></div></div></td></tr>
         <tr><td>E-mail</td><td>email</td><td style="font-family:monospace;font-size:12px">fzz-v6</td><td>—</td><td><div class="pb-outer"><div class="pb-inner" style="width:0"></div></div></td></tr>
         <tr><td>LinkedIn</td><td>social</td><td style="font-family:monospace;font-size:12px">fzz-v6</td><td>—</td><td><div class="pb-outer"><div class="pb-inner" style="width:0"></div></div></td></tr>
+        <tr><td>Organisch zoeken</td><td>organic</td><td style="font-family:monospace;font-size:12px">(geen campagne)</td><td>—</td><td><div class="pb-outer"><div class="pb-inner" style="width:0"></div></div></td></tr>
       </tbody>
     </table>
   </div>
@@ -342,6 +355,43 @@ code{background:var(--surface-container);padding:2px 6px;border-radius:4px;font-
     </div>
   </div>
 
+  <!-- GOOGLE SEARCH CONSOLE -->
+  <div class="sec-head">
+    <span class="material-symbols-outlined" style="color:#4285F4">travel_explore</span>
+    <h2>Google Search Console — organisch zoeken</h2>
+    <span class="badge badge-manual">Wekelijks bijwerken</span>
+  </div>
+  <div class="card card-body">
+    <p style="font-size:13px;color:var(--on-surface-variant);margin-bottom:16px;line-height:1.6">
+      Haal de cijfers op via <a href="https://search.google.com/search-console" target="_blank" style="color:#4285F4;font-weight:700">Search Console ↗</a> → <strong>Zoekresultaten</strong> → filter op <strong>Afgelopen 28 dagen</strong>. De pagina is geïndexeerd — bijhouden helpt autoriteitsgroei zichtbaar te maken.
+    </p>
+    <div class="ig-grid">
+      <div class="ig-field"><label>Klikken (28d)</label><input type="number" id="gsc-clicks" placeholder="0" min="0"></div>
+      <div class="ig-field"><label>Vertoningen (28d)</label><input type="number" id="gsc-impressions" placeholder="0" min="0"></div>
+      <div class="ig-field"><label>Gem. CTR (%)</label><input type="number" id="gsc-ctr" placeholder="0.0" min="0" step="0.1" class="text-input"></div>
+      <div class="ig-field"><label>Gem. positie</label><input type="number" id="gsc-position" placeholder="0.0" min="0" step="0.1" class="text-input"></div>
+      <div class="ig-field"><label>Geïndexeerde pagina's</label><input type="number" id="gsc-indexed" placeholder="0" min="0"></div>
+    </div>
+    <div style="display:flex;align-items:center;gap:14px;margin-top:18px;flex-wrap:wrap">
+      <button class="btn-save-blue" onclick="saveGsc()">Opslaan</button>
+      <span class="saved-note" id="gsc-saved" style="color:#4285F4;">✓ Search Console data opgeslagen</span>
+      <a href="https://search.google.com/search-console" target="_blank" class="gsc-link" style="margin-top:0">
+        <span class="material-symbols-outlined" style="font-size:16px">open_in_new</span>Open Search Console
+      </a>
+    </div>
+    <table class="gsc-tbl" id="gsc-history-tbl" style="display:none">
+      <thead><tr>
+        <th>Datum</th>
+        <th>Klikken</th>
+        <th>Vertoningen</th>
+        <th>CTR</th>
+        <th>Positie</th>
+        <th>Pagina's</th>
+      </tr></thead>
+      <tbody id="gsc-history-tbody"></tbody>
+    </table>
+  </div>
+
   <!-- RECENTE EVENTS -->
   <div class="sec-head">
     <span class="material-symbols-outlined" style="color:var(--on-surface-variant)">history</span>
@@ -362,7 +412,7 @@ code{background:var(--surface-container);padding:2px 6px;border-radius:4px;font-
   </div>
   <div class="data-share-bar">
     <span class="material-symbols-outlined" style="font-size:18px;color:var(--on-surface-variant)">info</span>
-    <p>Events en Instagram-data staan in <strong>jouw browser</strong> opgeslagen — anderen zien hun eigen (lege) data. Gebruik export/import om je data te delen, of koppel GA4 + Looker Studio voor echte cross-device data.</p>
+    <p>Events en Instagram/GSC-data staan in <strong>jouw browser</strong> opgeslagen — anderen zien hun eigen (lege) data. Gebruik export/import om data te delen, of gebruik GA4 + Looker Studio voor cross-device data.</p>
     <button class="btn-sm btn-export" onclick="exportData()">
       <span class="material-symbols-outlined" style="font-size:14px;vertical-align:middle">upload</span> Exporteer data
     </button>
@@ -381,28 +431,25 @@ code{background:var(--surface-container);padding:2px 6px;border-radius:4px;font-
   <!-- LOOKER STUDIO -->
   <div class="sec-head">
     <span class="material-symbols-outlined" style="color:var(--secondary)">bar_chart</span>
-    <h2>Looker Studio — historisch overzicht</h2>
-    <span class="badge badge-setup" id="looker-badge">Nog niet verbonden</span>
+    <h2>Looker Studio — GA4 historisch overzicht</h2>
+    <span class="badge badge-live" id="looker-badge">Verbonden</span>
   </div>
   <div class="card card-body" id="looker-section">
-    <div id="looker-placeholder">
+    <div id="looker-placeholder" style="display:none">
       <div class="looker-placeholder">
         <span class="material-symbols-outlined icon">bar_chart</span>
         <h3>Looker Studio rapport verbinden</h3>
-        <p>Maak een gratis Looker Studio rapport op basis van je GA4 data en plak de embed-URL hieronder. Zie de setup-instructies voor stap-voor-stap uitleg.</p>
+        <p>Plak de embed-URL van je Looker Studio rapport hieronder.</p>
         <div class="looker-input-row">
           <input type="text" id="looker-url" placeholder="https://lookerstudio.google.com/embed/reporting/...">
           <button class="btn-connect" onclick="saveLooker()">Verbinden</button>
         </div>
       </div>
     </div>
-    <div id="looker-embed" style="display:none">
+    <div id="looker-embed">
       <div class="looker-error" id="looker-error">
         <strong>⚠ Rapport kon niet geladen worden</strong>
-        Controleer de volgende punten:<br>
-        1. <strong>Rapport is openbaar:</strong> Open Looker Studio → Bestand → Rapport delen → stel in op "Iedereen met de link kan bekijken".<br>
-        2. <strong>Gebruik de embed-URL:</strong> Klik op Delen → Rapport insluiten → kopieer de URL die begint met <code>lookerstudio.google.com/embed/reporting/…</code><br>
-        3. Verwijder de verbinding hieronder en plak de juiste URL opnieuw.
+        Controleer: (1) rapport staat op "Iedereen met de link kan bekijken" · (2) gebruik de embed-URL (<code>lookerstudio.google.com/embed/reporting/…</code>) · (3) verwijder de verbinding hieronder en plak opnieuw.
       </div>
       <iframe id="looker-iframe" src="" allowfullscreen title="Looker Studio rapport — Feestje zonder Zorgen" onload="onLookerLoad(this)" onerror="showLookerError()"></iframe>
       <button class="btn-disconnect" onclick="disconnectLooker()">Verbinding verwijderen</button>
@@ -411,12 +458,13 @@ code{background:var(--surface-container);padding:2px 6px;border-radius:4px;font-
 
   <!-- SETUP GUIDE -->
   <div class="setup-guide" id="setup-guide">
-    <h2>
-      <span class="material-symbols-outlined" style="vertical-align:middle;font-size:20px;margin-right:6px">settings</span>
-      Setup-instructies (±30 min)
+    <h2 style="display:flex;align-items:center;gap:8px">
+      <span class="material-symbols-outlined" style="vertical-align:middle;font-size:20px;color:var(--secondary)">check_circle</span>
+      Setup voltooid ✓
     </h2>
-    <p>Volg deze stappen om van lokale events naar echte cross-device, real-time data te gaan.</p>
-    <div class="steps">
+    <p>Alle stappen zijn ingesteld. Hieronder staat een overzicht als naslagwerk.</p>
+    <button class="setup-toggle" onclick="toggleSetup()">Toon / verberg stappen</button>
+    <div class="steps" id="setup-steps" style="display:none">
 
       <div class="step">
         <div class="step-n done">✓</div>
@@ -430,7 +478,7 @@ code{background:var(--surface-container);padding:2px 6px;border-radius:4px;font-
         <div class="step-n done">✓</div>
         <div>
           <h4>Instagram pagina aangemaakt</h4>
-          <p>Actief op <a href="https://www.instagram.com/feestjezonderzorgen/" target="_blank">@feestjezonderzorgen</a>. Zet het account om naar een <strong>Zakelijk</strong> of <strong>Creator</strong>-profiel om toegang te krijgen tot Inzichten en link-tracking.</p>
+          <p>Actief op <a href="https://www.instagram.com/feestjezonderzorgen/" target="_blank">@feestjezonderzorgen</a>. Creator-profiel voor toegang tot Inzichten.</p>
         </div>
       </div>
 
@@ -438,63 +486,55 @@ code{background:var(--surface-container);padding:2px 6px;border-radius:4px;font-
         <div class="step-n done">✓</div>
         <div>
           <h4>Tracking-code in index.html</h4>
-          <p>De <code>fzzTrack()</code>-functie staat in <code>index.html</code> en slaat events op in localStorage én stuurt ze door naar GA4 (zodra GA4 gekoppeld is). Events: <code>quiz_start</code>, <code>quiz_answer</code>, <code>quiz_complete</code>, <code>share_click</code>, <code>steun_click</code>, <code>checklist_print</code>, <code>checklist_copy</code>.</p>
+          <p>De <code>fzzTrack()</code>-functie slaat events op in localStorage én stuurt ze door naar GA4. Events: <code>quiz_start</code>, <code>quiz_answer</code>, <code>quiz_complete</code>, <code>share_click</code>, <code>steun_click</code>, <code>checklist_print</code>, <code>checklist_copy</code>.</p>
         </div>
       </div>
 
       <div class="step">
-        <div class="step-n">4</div>
+        <div class="step-n done">✓</div>
         <div>
-          <h4>GA4 property aanmaken</h4>
-          <p>Ga naar <a href="https://analytics.google.com" target="_blank">analytics.google.com</a> → <strong>Beheer</strong> (tandwiel) → <strong>+ Property aanmaken</strong> → selecteer <strong>Web</strong> → vul de website-URL in. Noteer je <strong>Measurement ID</strong> (formaat: <code>G-XXXXXXXXXX</code>).</p>
+          <h4>GA4 property aangemaakt</h4>
+          <p>Measurement ID: <code>G-VVEHLCKC5Q</code> — actief op <a href="https://analytics.google.com" target="_blank">analytics.google.com</a>.</p>
         </div>
       </div>
 
       <div class="step">
-        <div class="step-n">5</div>
+        <div class="step-n done">✓</div>
         <div>
-          <h4>GA4 Measurement ID toevoegen aan index.html</h4>
-          <p>Open <code>index.html</code> en vervang de twee plekken waar <code>G-XXXXXXXXXX</code> staat door jouw echte Measurement ID. Zoek op <code>G-XXXXXXXXXX</code> in de broncode — je vindt het in de GA4-scripttags bovenaan.</p>
-          <pre class="code-block">&lt;!-- GA4 — vervang G-XXXXXXXXXX door jouw Measurement ID --&gt;
-&lt;script async src="https://www.googletagmanager.com/gtag/js?id=G-XXXXXXXXXX"&gt;&lt;/script&gt;
-&lt;script&gt;
-  window.dataLayer = window.dataLayer || [];
-  function gtag(){dataLayer.push(arguments);}
-  gtag('js', new Date());
-  gtag('config', 'G-XXXXXXXXXX');
-&lt;/script&gt;</pre>
+          <h4>GA4 Measurement ID toegevoegd aan index.html</h4>
+          <p>GA4 tag met <code>G-VVEHLCKC5Q</code> is verwerkt in de broncode van de website.</p>
         </div>
       </div>
 
       <div class="step">
-        <div class="step-n">6</div>
+        <div class="step-n done">✓</div>
         <div>
-          <h4>Custom events verifiëren in GA4</h4>
-          <p>Na 24-48 uur verschijnen de events in GA4 → <strong>Rapporten → Betrokkenheid → Events</strong>. Je ziet:</p>
-          <ul class="events-list">
-            <li><code>quiz_start</code> — quiz-sectie scrolt in beeld</li>
-            <li><code>quiz_answer</code> — antwoord gegeven (met <code>question</code>, <code>correct</code>)</li>
-            <li><code>quiz_complete</code> — quiz afgerond (met <code>score</code> en <code>total</code>)</li>
-            <li><code>share_click</code> — gedeeld, met parameter <code>channel</code> (whatsapp / checklist_whatsapp / email / native / copy)</li>
-            <li><code>steun_click</code> — steun-knop geklikt</li>
-            <li><code>checklist_print</code> / <code>checklist_copy</code> — checklist gedownload</li>
-          </ul>
+          <h4>Custom events geverifieerd in GA4</h4>
+          <p>Events verschijnen in GA4 → Rapporten → Betrokkenheid → Events. Quiz, share en steun-events worden bijgehouden.</p>
         </div>
       </div>
 
       <div class="step">
-        <div class="step-n">7</div>
+        <div class="step-n done">✓</div>
         <div>
-          <h4>Looker Studio rapport aanmaken</h4>
-          <p>Ga naar <a href="https://lookerstudio.google.com" target="_blank">lookerstudio.google.com</a> → <strong>Leeg rapport</strong> → <strong>Gegevensbron toevoegen</strong> → <strong>Google Analytics</strong> → selecteer je FZZ property. Voeg metrics toe: <em>Sessies, Actieve gebruikers, Events (per event-naam), UTM-campagne-uitsplitsing</em>. Publiceer het rapport → <strong>Delen → Insluiten</strong> → kopieer de embed-URL → plak in het veld hierboven.</p>
+          <h4>Looker Studio rapport aangemaakt en verbonden</h4>
+          <p>Rapport draait op GA4-data van de FZZ property. Embed actief in dit dashboard.</p>
         </div>
       </div>
 
       <div class="step">
-        <div class="step-n">8</div>
+        <div class="step-n done">✓</div>
         <div>
           <h4>Instagram Insights — wekelijks bijwerken</h4>
-          <p>Open Instagram → jouw profiel → <strong>Inzichten bekijken</strong>. Noteer: Bereik, Impressies, Profielbezoeken, Link-klikken. Vul in via het formulier hierboven. Tip: agenda-herhaling elke maandag.</p>
+          <p>Open Instagram → jouw profiel → <strong>Inzichten bekijken</strong>. Noteer: Bereik, Impressies, Profielbezoeken, Link-klikken. Tip: agenda-herhaling elke maandag.</p>
+        </div>
+      </div>
+
+      <div class="step">
+        <div class="step-n done">✓</div>
+        <div>
+          <h4>Google Search Console — pagina geïndexeerd</h4>
+          <p>Controleer wekelijks via <a href="https://search.google.com/search-console" target="_blank">search.google.com/search-console</a> → Zoekresultaten → 28 dagen. Vul in via het GSC-formulier hierboven.</p>
         </div>
       </div>
 
@@ -506,12 +546,14 @@ code{background:var(--surface-container);padding:2px 6px;border-radius:4px;font-
 
 <script>
 /* ==========================================================
-   FZZ DASHBOARD
-   - Leest fzz_events_v1 uit localStorage (zelfde origin)
-   - Instagram via handmatig formulier (opgeslagen in localStorage)
-   - Looker Studio embed via localStorage
-   - Auto-refresh elke 30 seconden
+   FZZ DASHBOARD v6
+   - GA4 via Looker Studio embed (vast verbonden)
+   - GSC handmatig (weekly snapshot + history)
+   - Instagram handmatig
+   - Lokale events (localStorage)
    ========================================================== */
+
+var DEFAULT_LOOKER = 'https://lookerstudio.google.com/embed/reporting/6c262c79-93f5-45de-a4b5-2182e1652957/page/xV6wF';
 
 var currentPeriod = 'today';
 
@@ -588,6 +630,9 @@ function loadAll() {
   /* Instagram */
   loadIg();
 
+  /* GSC */
+  loadGsc();
+
   /* Recent events */
   renderEvents(all.slice(-25).reverse());
 
@@ -595,11 +640,6 @@ function loadAll() {
   document.getElementById('last-refresh').textContent =
     'Bijgewerkt: ' + new Date().toLocaleTimeString('nl-NL',{hour:'2-digit',minute:'2-digit',second:'2-digit'});
   document.getElementById('header-meta').textContent = n(all.length) + ' events totaal';
-
-  /* Setup banner: verberg als er al events zijn */
-  var banner = document.getElementById('setup-banner');
-  if (all.length > 0) banner.classList.add('hidden');
-  else banner.classList.remove('hidden');
 }
 
 /* EVENT-TYPE LABEL */
@@ -680,11 +720,81 @@ function saveIg() {
   } catch(e){}
 }
 
+/* GOOGLE SEARCH CONSOLE */
+function loadGsc() {
+  try {
+    var history = JSON.parse(localStorage.getItem('fzz_gsc_v1')||'[]');
+    if (!history.length) return;
+    var latest = history[history.length - 1];
+
+    if (latest.clicks) {
+      document.getElementById('kpi-gsc-clicks').textContent = n(latest.clicks);
+      document.getElementById('kpi-gsc-clicks').classList.remove('na');
+      document.getElementById('gsc-clicks-dot').className = 'dot dot-blue';
+      document.getElementById('gsc-clicks-src').textContent = 'GSC 28d · ' + latest.date;
+    }
+    if (latest.position) {
+      document.getElementById('kpi-gsc-pos').textContent = parseFloat(latest.position).toFixed(1);
+      document.getElementById('kpi-gsc-pos').classList.remove('na');
+      document.getElementById('gsc-pos-dot').className = 'dot dot-blue';
+      document.getElementById('gsc-pos-src').textContent = 'Gem. positie · ' + latest.date;
+    }
+
+    /* Vul formulier in met laatste waarden */
+    ['clicks','impressions','ctr','position','indexed'].forEach(function(k){
+      var el = document.getElementById('gsc-' + k);
+      if (el && latest[k] != null) el.value = latest[k];
+    });
+
+    /* History tabel */
+    renderGscHistory(history);
+  } catch(e){}
+}
+
+function saveGsc() {
+  try {
+    var entry = {
+      date:        new Date().toLocaleDateString('nl-NL',{day:'2-digit',month:'2-digit',year:'numeric'}),
+      clicks:      parseInt(document.getElementById('gsc-clicks').value)||0,
+      impressions: parseInt(document.getElementById('gsc-impressions').value)||0,
+      ctr:         parseFloat(document.getElementById('gsc-ctr').value)||0,
+      position:    parseFloat(document.getElementById('gsc-position').value)||0,
+      indexed:     parseInt(document.getElementById('gsc-indexed').value)||0,
+      savedAt:     Date.now()
+    };
+    var history = JSON.parse(localStorage.getItem('fzz_gsc_v1')||'[]');
+    history.push(entry);
+    /* Bewaar max 52 weken */
+    if (history.length > 52) history = history.slice(history.length - 52);
+    localStorage.setItem('fzz_gsc_v1', JSON.stringify(history));
+    var note = document.getElementById('gsc-saved');
+    note.style.display = 'block';
+    setTimeout(function(){ note.style.display='none'; }, 3000);
+    loadAll();
+  } catch(e){}
+}
+
+function renderGscHistory(history) {
+  var tbl = document.getElementById('gsc-history-tbl');
+  var tbody = document.getElementById('gsc-history-tbody');
+  if (!history.length) { tbl.style.display='none'; return; }
+  tbl.style.display = 'table';
+  var rows = history.slice().reverse().slice(0, 8);
+  tbody.innerHTML = rows.map(function(r) {
+    return '<tr>' +
+      '<td style="font-size:12px;color:var(--on-surface-variant);white-space:nowrap">' + r.date + '</td>' +
+      '<td style="font-weight:700">' + n(r.clicks||0) + '</td>' +
+      '<td>' + n(r.impressions||0) + '</td>' +
+      '<td>' + (r.ctr ? parseFloat(r.ctr).toFixed(1) + '%' : '—') + '</td>' +
+      '<td>' + (r.position ? parseFloat(r.position).toFixed(1) : '—') + '</td>' +
+      '<td>' + (r.indexed||'—') + '</td>' +
+      '</tr>';
+  }).join('');
+}
+
 /* LOOKER STUDIO */
 function normalizeLookerUrl(url) {
-  // Zet datastudio.google.com om naar lookerstudio.google.com
   url = url.replace('datastudio.google.com', 'lookerstudio.google.com');
-  // Zet gewone view-URL om naar embed-URL
   if (url.match(/lookerstudio\.google\.com\/reporting\//)) {
     url = url.replace('/reporting/', '/embed/reporting/');
   }
@@ -706,13 +816,10 @@ function activateLooker(url) {
   document.getElementById('looker-badge').className = 'badge badge-live';
 }
 function onLookerLoad(iframe) {
-  // Detecteer lege/geblokkeerde iframe (about:blank of cross-origin fout)
   try {
     var loc = iframe.contentWindow && iframe.contentWindow.location && iframe.contentWindow.location.href;
     if (loc === 'about:blank') showLookerError();
-  } catch(e) {
-    // Cross-origin: iframe laadde iets, waarschijnlijk OK
-  }
+  } catch(e) { /* cross-origin = waarschijnlijk geladen */ }
 }
 function showLookerError() {
   document.getElementById('looker-error').style.display = 'block';
@@ -723,25 +830,36 @@ function disconnectLooker() {
   document.getElementById('looker-embed').style.display = 'none';
   document.getElementById('looker-error').style.display = 'none';
   document.getElementById('looker-iframe').src = '';
-  document.getElementById('looker-badge').textContent = 'Nog niet verbonden';
+  document.getElementById('looker-badge').textContent = 'Niet verbonden';
   document.getElementById('looker-badge').className = 'badge badge-setup';
 }
 (function initLooker(){
   var u = localStorage.getItem('fzz_looker_url');
-  if (u) activateLooker(u);
+  if (!u) {
+    u = DEFAULT_LOOKER;
+    localStorage.setItem('fzz_looker_url', u);
+  }
+  activateLooker(u);
 })();
+
+/* SETUP TOGGLE */
+function toggleSetup() {
+  var el = document.getElementById('setup-steps');
+  el.style.display = el.style.display === 'none' ? 'flex' : 'none';
+}
 
 /* EXPORT / IMPORT */
 function exportData() {
   var data = {
     events: JSON.parse(localStorage.getItem('fzz_events_v1')||'[]'),
     ig:     JSON.parse(localStorage.getItem('fzz_ig_v1')||'{}'),
+    gsc:    JSON.parse(localStorage.getItem('fzz_gsc_v1')||'[]'),
     exportedAt: Date.now()
   };
   var json = JSON.stringify(data);
   if (navigator.clipboard && navigator.clipboard.writeText) {
     navigator.clipboard.writeText(json).then(function(){
-      alert('Data gekopieerd naar klembord! Stuur dit als bericht naar de ontvanger, die kan het importeren via "Importeer data".');
+      alert('Data gekopieerd naar klembord! Stuur dit naar de ontvanger, die kan het importeren via "Importeer data".');
     });
   } else {
     document.getElementById('import-json').value = json;
@@ -761,10 +879,11 @@ function importData() {
     var data = JSON.parse(json);
     if (data.events) localStorage.setItem('fzz_events_v1', JSON.stringify(data.events));
     if (data.ig)     localStorage.setItem('fzz_ig_v1',     JSON.stringify(data.ig));
+    if (data.gsc)    localStorage.setItem('fzz_gsc_v1',    JSON.stringify(data.gsc));
     document.getElementById('import-json').value = '';
     document.getElementById('import-area').style.display = 'none';
     loadAll();
-    alert('Data geladen! Je ziet nu de gegevens van het gedeelde apparaat.');
+    alert('Data geladen!');
   } catch(e) {
     alert('Ongeldige data. Zorg dat je de volledige JSON hebt gekopieerd.');
   }
