@@ -116,6 +116,19 @@ body{font-family:'Lexend',system-ui,sans-serif;background:var(--bg);color:var(--
 .looker-error strong{display:block;margin-bottom:6px;color:#856404;}
 .btn-disconnect{background:none;border:none;color:var(--on-surface-variant);font-size:12px;cursor:pointer;text-decoration:underline;font-family:inherit;margin-top:10px;}
 
+/* LOOKER BANNER (vervangt lege bezoekers/sessies KPI-kaarten) */
+.kpi-looker-banner{background:#fff;border-radius:14px;padding:16px 20px;border:1.5px dashed var(--outline-variant);grid-column:span 2;display:flex;align-items:center;gap:14px;cursor:pointer;text-decoration:none;color:inherit;transition:border-color 0.15s,background 0.15s;}
+.kpi-looker-banner:hover{border-color:var(--secondary);background:var(--surface);}
+.kpi-looker-banner .icon{font-size:28px;color:var(--secondary);flex-shrink:0;}
+.kpi-looker-banner-text strong{font-size:13px;font-weight:700;display:block;margin-bottom:3px;}
+.kpi-looker-banner-text span{font-size:12px;color:var(--on-surface-variant);}
+@media(max-width:640px){.kpi-looker-banner{grid-column:span 2;}}
+
+/* LOOKER IFRAME LOADING STATE */
+.looker-loader{display:flex;align-items:center;justify-content:center;height:200px;gap:12px;color:var(--on-surface-variant);font-size:13px;}
+.spinner{width:24px;height:24px;border:3px solid var(--outline-variant);border-top-color:var(--secondary);border-radius:50%;animation:spin 0.8s linear infinite;flex-shrink:0;}
+@keyframes spin{to{transform:rotate(360deg);}}
+
 /* EVENTS TABLE */
 .tbl{width:100%;border-collapse:collapse;font-size:13px;}
 .tbl th{text-align:left;padding:10px 14px;font-size:11px;color:var(--on-surface-variant);text-transform:uppercase;letter-spacing:0.4px;border-bottom:1px solid var(--outline-variant);font-weight:600;}
@@ -214,16 +227,14 @@ code{background:var(--surface-container);padding:2px 6px;border-radius:4px;font-
     <span class="badge badge-live" id="reach-badge">GA4 + Looker Studio live</span>
   </div>
   <div class="kpi-grid">
-    <div class="kpi reach">
-      <div class="kpi-label">Bezoekers</div>
-      <div class="kpi-val na" id="kpi-bezoekers">—</div>
-      <div class="kpi-src"><span class="dot dot-yellow"></span>Zie Looker Studio ↓</div>
-    </div>
-    <div class="kpi reach">
-      <div class="kpi-label">Sessies</div>
-      <div class="kpi-val na" id="kpi-sessies">—</div>
-      <div class="kpi-src"><span class="dot dot-yellow"></span>Zie Looker Studio ↓</div>
-    </div>
+    <a class="kpi-looker-banner" href="#looker-section" onclick="document.getElementById('looker-section').scrollIntoView({behavior:'smooth'});return false;">
+      <span class="material-symbols-outlined icon">bar_chart</span>
+      <div class="kpi-looker-banner-text">
+        <strong>Bezoekers &amp; Sessies — Looker Studio rapport</strong>
+        <span>Klik om het GA4-rapport hieronder te bekijken · bezoekers, sessies, kanalen &amp; meer</span>
+      </div>
+      <span class="material-symbols-outlined" style="font-size:18px;color:var(--outline);margin-left:auto">arrow_downward</span>
+    </a>
     <div class="kpi reach">
       <div class="kpi-label">Organische klikken (28d)</div>
       <div class="kpi-val na" id="kpi-gsc-clicks">—</div>
@@ -303,6 +314,38 @@ code{background:var(--surface-container);padding:2px 6px;border-radius:4px;font-
       <div class="kpi-label">Native/Copy deels</div>
       <div class="kpi-val" id="kpi-other">0</div>
       <div class="kpi-src"><span class="dot dot-green"></span>Lokale events</div>
+    </div>
+  </div>
+
+  <!-- LOOKER STUDIO -->
+  <div class="sec-head">
+    <span class="material-symbols-outlined" style="color:var(--secondary)">bar_chart</span>
+    <h2>Looker Studio — GA4 historisch overzicht</h2>
+    <span class="badge badge-live" id="looker-badge">Verbonden</span>
+  </div>
+  <div class="card card-body" id="looker-section">
+    <div id="looker-placeholder" style="display:none">
+      <div class="looker-placeholder">
+        <span class="material-symbols-outlined icon">bar_chart</span>
+        <h3>Looker Studio rapport verbinden</h3>
+        <p>Plak de embed-URL van je Looker Studio rapport hieronder.</p>
+        <div class="looker-input-row">
+          <input type="text" id="looker-url" placeholder="https://lookerstudio.google.com/embed/reporting/...">
+          <button class="btn-connect" onclick="saveLooker()">Verbinden</button>
+        </div>
+      </div>
+    </div>
+    <div id="looker-embed">
+      <div class="looker-error" id="looker-error">
+        <strong>⚠ Rapport kon niet geladen worden</strong>
+        Controleer: (1) rapport staat op "Iedereen met de link kan bekijken" · (2) gebruik de embed-URL (<code>lookerstudio.google.com/embed/reporting/…</code>) · (3) verwijder de verbinding hieronder en plak opnieuw.
+      </div>
+      <div class="looker-loader" id="looker-loader">
+        <div class="spinner"></div>
+        <span>Rapport laden…</span>
+      </div>
+      <iframe id="looker-iframe" src="" allowfullscreen title="Looker Studio rapport — Feestje zonder Zorgen" onload="onLookerLoad(this)" onerror="showLookerError()" style="display:none"></iframe>
+      <button class="btn-disconnect" onclick="disconnectLooker()">Verbinding verwijderen</button>
     </div>
   </div>
 
@@ -425,34 +468,6 @@ code{background:var(--surface-container);padding:2px 6px;border-radius:4px;font-
     <div style="display:flex;gap:8px;margin-top:8px">
       <button class="btn-sm btn-export" onclick="importData()">Laden</button>
       <button class="btn-sm btn-import" onclick="toggleImport()">Annuleren</button>
-    </div>
-  </div>
-
-  <!-- LOOKER STUDIO -->
-  <div class="sec-head">
-    <span class="material-symbols-outlined" style="color:var(--secondary)">bar_chart</span>
-    <h2>Looker Studio — GA4 historisch overzicht</h2>
-    <span class="badge badge-live" id="looker-badge">Verbonden</span>
-  </div>
-  <div class="card card-body" id="looker-section">
-    <div id="looker-placeholder" style="display:none">
-      <div class="looker-placeholder">
-        <span class="material-symbols-outlined icon">bar_chart</span>
-        <h3>Looker Studio rapport verbinden</h3>
-        <p>Plak de embed-URL van je Looker Studio rapport hieronder.</p>
-        <div class="looker-input-row">
-          <input type="text" id="looker-url" placeholder="https://lookerstudio.google.com/embed/reporting/...">
-          <button class="btn-connect" onclick="saveLooker()">Verbinden</button>
-        </div>
-      </div>
-    </div>
-    <div id="looker-embed">
-      <div class="looker-error" id="looker-error">
-        <strong>⚠ Rapport kon niet geladen worden</strong>
-        Controleer: (1) rapport staat op "Iedereen met de link kan bekijken" · (2) gebruik de embed-URL (<code>lookerstudio.google.com/embed/reporting/…</code>) · (3) verwijder de verbinding hieronder en plak opnieuw.
-      </div>
-      <iframe id="looker-iframe" src="" allowfullscreen title="Looker Studio rapport — Feestje zonder Zorgen" onload="onLookerLoad(this)" onerror="showLookerError()"></iframe>
-      <button class="btn-disconnect" onclick="disconnectLooker()">Verbinding verwijderen</button>
     </div>
   </div>
 
@@ -811,25 +826,38 @@ function activateLooker(url) {
   document.getElementById('looker-error').style.display = 'none';
   document.getElementById('looker-placeholder').style.display = 'none';
   document.getElementById('looker-embed').style.display = 'block';
-  document.getElementById('looker-iframe').src = url;
-  document.getElementById('looker-badge').textContent = 'Verbonden';
-  document.getElementById('looker-badge').className = 'badge badge-live';
+  document.getElementById('looker-loader').style.display = 'flex';
+  var iframe = document.getElementById('looker-iframe');
+  iframe.style.display = 'none';
+  iframe.src = url;
+  document.getElementById('looker-badge').textContent = 'Laden…';
+  document.getElementById('looker-badge').className = 'badge badge-manual';
 }
 function onLookerLoad(iframe) {
   try {
     var loc = iframe.contentWindow && iframe.contentWindow.location && iframe.contentWindow.location.href;
-    if (loc === 'about:blank') showLookerError();
+    if (loc === 'about:blank') { showLookerError(); return; }
   } catch(e) { /* cross-origin = waarschijnlijk geladen */ }
+  document.getElementById('looker-loader').style.display = 'none';
+  iframe.style.display = 'block';
+  document.getElementById('looker-badge').textContent = 'Verbonden';
+  document.getElementById('looker-badge').className = 'badge badge-live';
 }
 function showLookerError() {
+  document.getElementById('looker-loader').style.display = 'none';
   document.getElementById('looker-error').style.display = 'block';
+  document.getElementById('looker-badge').textContent = 'Fout';
+  document.getElementById('looker-badge').className = 'badge badge-setup';
 }
 function disconnectLooker() {
   localStorage.removeItem('fzz_looker_url');
   document.getElementById('looker-placeholder').style.display = 'block';
   document.getElementById('looker-embed').style.display = 'none';
   document.getElementById('looker-error').style.display = 'none';
-  document.getElementById('looker-iframe').src = '';
+  document.getElementById('looker-loader').style.display = 'none';
+  var iframe = document.getElementById('looker-iframe');
+  iframe.src = '';
+  iframe.style.display = 'none';
   document.getElementById('looker-badge').textContent = 'Niet verbonden';
   document.getElementById('looker-badge').className = 'badge badge-setup';
 }
