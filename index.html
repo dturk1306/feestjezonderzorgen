@@ -45,6 +45,10 @@
   "url": "https://www.feestzonderzorgen.nl/",
   "datePublished": "2026-04-22",
   "dateModified": "2026-05-11",
+  "speakable": {
+    "@type": "SpeakableSpecification",
+    "cssSelector": ["details.faq"]
+  },
   "inLanguage": "nl-NL",
   "about": {
     "@type": "Thing",
@@ -92,18 +96,50 @@
       },
       {
         "@type": "Question",
-        "name": "Wat als zij/hij niet wil dat ik er een ding van maak?",
-        "acceptedAnswer": {
-          "@type": "Answer",
-          "text": "Dat is heel normaal. Veel tieners willen liever niet dat hun allergie het gespreksonderwerp wordt op een feest. De truc: regel het vooraf goed, check 1× kort bij binnenkomst, en behandel haar/hem daarna gewoon als alle andere gasten."
-        }
-      },
-      {
-        "@type": "Question",
         "name": "Wat betekent 'Kan pinda bevatten' eigenlijk?",
         "acceptedAnswer": {
           "@type": "Answer",
           "text": "Sinds 1 januari 2026 staat dat alleen nog op het etiket als de fabrikant met een risicobeoordeling heeft aangetoond dat er reëel pinda-risico is. Dus: niet kopen voor het feest. Uitgebreidere uitleg staat in het stuk voor ouder/verzorger op deze pagina. Bron: NVWA en Stichting Voedselallergie."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Mag iemand met een pinda-allergie producten met 'sporen van pinda' eten?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Dit verschilt per persoon. Sommige mensen reageren op de kleinste sporen, terwijl anderen alleen bij directe consumptie klachten krijgen. Overleg altijd vooraf met de gast of de ouders welke stritheid zij hanteren."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Wat is het verschil tussen een pinda-allergie en een notenallergie?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Een pinda is een peulvrucht die onder de grond groeit, terwijl noten (zoals walnoten of cashews) aan bomen groeien. Hoewel het verschillende allergieën zijn, komen ze vaak samen voor. Check daarom altijd beide bij je gast."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Welke snacks en snoepjes zijn over het algemeen pindavrij?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Veel puur snoepgoed (zoals winegums), zoute chips (naturel) en fruit zijn vaak veilig. Let op met chocolade, koekjes en oosterse snacks. Controleer altijd de ingrediëntenlijst op dikgedrukte allergenen."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Hoe voorkom ik kruisbesmetting in mijn eigen keuken?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Gebruik schone messen, snijplanken en serveerschalen. Een klein spoortje pindakaas aan een mes kan al een reactie veroorzaken. Was je handen grondig nadat je pinda-producten hebt aangeraakt."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Wat moet ik doen bij een allergische reactie (anafylaxie)?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Herken de signalen: benauwdheid, zwelling of flauwvallen. Gebruik direct de adrenaline-auto-injector (EpiPen) van de gast indien aanwezig en bel direct 112. Blijf altijd bij de persoon tot de hulpdiensten er zijn."
         }
       }
     ]
@@ -546,17 +582,17 @@ h3 { font-size: 20px; font-weight: 600; line-height: 1.4; margin: 0; }
   padding: var(--spacing-lg);
   border: 1px solid var(--outline-variant);
 }
-.checklist-card h3 { display: flex; align-items: center; gap: 10px; margin-bottom: var(--spacing-md); }
-.checklist-card h3 .material-symbols-outlined { font-size: 28px; color: var(--secondary); font-variation-settings: 'FILL' 1; }
+.checklist-card-label { display: flex; align-items: center; gap: 10px; margin: 0 0 var(--spacing-md); font-size: 20px; font-weight: 600; line-height: 1.4; }
+.checklist-card-label .material-symbols-outlined { font-size: 28px; color: var(--secondary); font-variation-settings: 'FILL' 1; }
 .checklist-group { margin: var(--spacing-md) 0; }
-.checklist-group h4 {
+.checklist-group h3 {
   font-size: 12px; text-transform: uppercase;
   letter-spacing: 0.08em; color: var(--secondary);
   font-weight: 700; margin: 0 0 var(--spacing-sm);
   display: flex; align-items: center; gap: 6px;
 }
-.checklist-group.alarm h4 { color: var(--primary); }
-.checklist-group.alarm h4 .material-symbols-outlined { color: var(--primary); }
+.checklist-group.alarm h3 { color: var(--primary); }
+.checklist-group.alarm h3 .material-symbols-outlined { color: var(--primary); }
 .checklist-group ul { list-style: none; padding: 0; margin: 0; }
 .checklist-group li {
   display: flex; align-items: flex-start; gap: 12px;
@@ -942,7 +978,7 @@ footer a { color: var(--outline); }
   <!-- BLOK 2: QUIZ MET CASUS -->
   <section class="section" id="quiz">
     <h2 class="section-title">De quiz: 5 situaties, 3 minuten</h2>
-    <p class="section-subtitle">Direct feedback na elke vraag. Aan het einde krijg je de Vrienden-checklist.</p>
+    <p class="section-subtitle">Direct feedback na elke vraag. Aan het einde krijg je de Vrienden-checklist — specifiek voor pinda-allergie en andere voedselallergieën.</p>
 
     <div class="casus">
       <span class="casus-tag">
@@ -976,16 +1012,16 @@ footer a { color: var(--outline); }
     <p class="section-subtitle">7 dingen die echt het verschil maken.</p>
 
     <div class="checklist-card">
-      <h3>
-        <span class="material-symbols-outlined">fact_check</span>
+      <p class="checklist-card-label">
+        <span class="material-symbols-outlined" aria-hidden="true">fact_check</span>
         Jouw Vrienden-checklist
-      </h3>
+      </p>
 
       <div class="checklist-group">
-        <h4>
-          <span class="material-symbols-outlined" style="font-size:16px">calendar_today</span>
+        <h3>
+          <span class="material-symbols-outlined" style="font-size:16px" aria-hidden="true">calendar_today</span>
           Vooraf
-        </h4>
+        </h3>
         <ul>
           <li><input type="checkbox" id="c1"><label for="c1">Bel of spreek af met je vriend(in) — vraag wat wél en niet kan, welke merken oké zijn, en of er naast pinda nog andere allergieën spelen (noten, soja).</label></li>
           <li><input type="checkbox" id="c2"><label for="c2">Lees etiketten van voorverpakte producten:<br>• "Bevat pinda" in ingrediënten = altijd weglaten.<br>• "Kan pinda bevatten" = sinds 2026 onderbouwd risico, dus weglaten.<br>• Geen pinda-vermelding = veilig.</label></li>
@@ -994,10 +1030,10 @@ footer a { color: var(--outline); }
       </div>
 
       <div class="checklist-group">
-        <h4>
-          <span class="material-symbols-outlined" style="font-size:16px">celebration</span>
+        <h3>
+          <span class="material-symbols-outlined" style="font-size:16px" aria-hidden="true">celebration</span>
           Op het feest zelf
-        </h4>
+        </h3>
         <ul>
           <li><input type="checkbox" id="c4"><label for="c4">Bij binnenkomst even kort doorlopen wat je hebt gehaald — dan weet je vriend(in) dat het gecheckt is, en kan iedereen gewoon feest vieren.</label></li>
           <li><input type="checkbox" id="c5"><label for="c5">Weet waar de EpiPen ligt en wie 'm pakt als het nodig is.</label></li>
@@ -1005,10 +1041,10 @@ footer a { color: var(--outline); }
       </div>
 
       <div class="checklist-group alarm" id="emergency">
-        <h4>
-          <span class="material-symbols-outlined" style="font-size:16px">emergency</span>
+        <h3>
+          <span class="material-symbols-outlined" style="font-size:16px" aria-hidden="true">emergency</span>
           Als het toch misgaat
-        </h4>
+        </h3>
         <ul>
           <li><input type="checkbox" id="c6"><label for="c6">Bij keel jeukt, zwelling, benauwd: EpiPen in het bovenbeen, 3 seconden vasthouden. Bij twijfel: gewoon doen.</label></li>
           <li><input type="checkbox" id="c7"><label for="c7">Direct daarna 112 bellen. Ook als het beter lijkt te gaan. Ouders bellen kan daarna.</label></li>
@@ -1034,21 +1070,21 @@ footer a { color: var(--outline); }
 
     <!-- SEO-sectie 1: gastheer-perspectief -->
     <div class="seo-block">
-      <h2>Wat kan ik doen als gastheer?</h2>
+      <h2>Wat kan ik doen als gastheer bij iemand met een voedselallergie?</h2>
       <p>Als gastheer of gastvrouw draag je de verantwoordelijkheid voor een veilige avond — en dat voelt misschien spannend. Maar het valt mee. De drie dingen die echt het verschil maken: <strong>vooraf even bellen</strong> met je vriend(in) over wat wél en niet kan, <strong>etiketten lezen</strong> bij de boodschappen (zie de checklist hierboven), en bij binnenkomst kort doorlopen wat je hebt geregeld. Daarna kun je gewoon feest vieren — je hebt je werk gedaan.</p>
       <p>Tieners met pinda-allergie willen vooral gewoon erbij horen. Jij hoeft geen allergie-expert te zijn. Een beetje voorbereiding is genoeg.</p>
     </div>
 
     <!-- SEO-sectie 2: veilige snacks -->
     <div class="seo-block">
-      <h2>Veilige snacks zonder pinda</h2>
+      <h2>Veilige snacks en voedselallergie tips bij pinda</h2>
       <p>Bij de supermarkt geldt de vuistregel: <strong>geen pinda-vermelding op het etiket = veilig</strong>. Denk aan chips zonder pinda (lees wel even de achterkant), rijstwafels, fruitspiesjes, crackers met kaas, popcorn of M&M's (let op: geen pinda-variant). Bij twijfel: kijk of er "pinda" staat bij de ingrediënten of in de allergenenverklaring.</p>
       <p>Bij de bakker, markt of afhaalzaak geldt het etiketregime niet — vraag dan mondeling na, of bel je vriend(in) even. Een tekst als "Kan pinda bevatten" op een voorverpakt product betekent sinds 2026 dat er een reëel risico is aangetoond: niet kopen.</p>
     </div>
 
     <!-- SEO-sectie 3: herkennen allergische reactie -->
     <div class="seo-block">
-      <h2>Hoe herken ik een allergische reactie?</h2>
+      <h2>Hoe herken ik een allergische reactie of anafylaxie?</h2>
       <p>Een reactie begint vaak binnen 5 tot 30 minuten. Let op deze signalen:</p>
       <ul class="seo-list">
         <li><strong>Huid:</strong> uitslag, rode vlekken, jeuk — met name rond mond of keel</li>
@@ -1068,7 +1104,8 @@ footer a { color: var(--outline); }
 
       <div class="kern-grid">
         <div class="kern-card pinda">
-          <svg class="kern-svg" viewBox="0 0 64 64" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+          <svg class="kern-svg" viewBox="0 0 64 64" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Illustratie van een pinda — een dubbele peul die ondergronds groeit">
+            <title>Illustratie van een pinda</title>
             <ellipse cx="32" cy="22" rx="14" ry="14" fill="#D4A574" stroke="#8A5A2B" stroke-width="1.5"/>
             <ellipse cx="32" cy="42" rx="16" ry="16" fill="#D4A574" stroke="#8A5A2B" stroke-width="1.5"/>
             <path d="M18 30 Q32 26 46 30" stroke="#8A5A2B" stroke-width="1" fill="none"/>
@@ -1079,7 +1116,8 @@ footer a { color: var(--outline); }
           <p>Familie van bonen, erwten, linzen. Groeit ondergronds in een peul. Op het etiket staat <strong>"pinda"</strong>.</p>
         </div>
         <div class="kern-card noot">
-          <svg class="kern-svg" viewBox="0 0 64 64" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+          <svg class="kern-svg" viewBox="0 0 64 64" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Illustratie van een boomnoot — zoals een walnoot of hazelnoot die aan een boom groeit">
+            <title>Illustratie van een boomnoot</title>
             <path d="M32 8 Q20 12 18 28 Q16 46 32 56 Q48 46 46 28 Q44 12 32 8 Z" fill="#A0673A" stroke="#5A3318" stroke-width="1.5"/>
             <path d="M32 12 Q24 16 22 30 Q22 44 32 52" stroke="#5A3318" stroke-width="0.8" fill="none" opacity="0.5"/>
             <path d="M32 12 Q40 16 42 30 Q42 44 32 52" stroke="#5A3318" stroke-width="0.8" fill="none" opacity="0.5"/>
@@ -1104,7 +1142,7 @@ footer a { color: var(--outline); }
   <!-- BLOK 4: WAAROM NIET ONDERSCHATTEN -->
   <section class="section">
     <h2 class="section-title">Waarom een pinda-allergie niet onderschat mag worden</h2>
-    <p class="section-subtitle">Waarom dit echt serieus is — in 30 seconden.</p>
+    <p class="section-subtitle">Waarom pinda-allergie en anafylaxie echt serieus zijn — in 30 seconden.</p>
 
     <div class="bento">
       <div class="bento-item">
@@ -1156,8 +1194,8 @@ footer a { color: var(--outline); }
   <!-- BLOK 7: EMERGENCY CARD + MODAL -->
   <section class="section">
     <button type="button" class="emergency-card" id="emergency-open" aria-haspopup="dialog" aria-controls="emergency-modal">
-      <span class="material-symbols-outlined">warning</span>
-      <h3>Noodgeval? Klik hier</h3>
+      <span class="material-symbols-outlined" aria-hidden="true">warning</span>
+      <h2>Noodgeval? Klik hier</h2>
       <p>Direct het 3-stappenprotocol: EpiPen → 112 → ouders.</p>
     </button>
   </section>
@@ -1305,19 +1343,35 @@ footer a { color: var(--outline); }
     </details>
 
     <details class="faq">
-      <summary>Wat als zij/hij niet wil dat ik er een ding van maak?</summary>
-      <p>Dat is heel normaal. Veel tieners willen liever niet dat hun allergie het gespreksonderwerp wordt op een feest. De truc: regel het vooraf goed, check 1× kort bij binnenkomst, en behandel haar/hem daarna gewoon als alle andere gasten. Jij weet wat je hebt gehaald — zij/hij weet dat jij het weet. That's it.</p>
-    </details>
-
-    <details class="faq">
       <summary>Wat betekent "Kan pinda bevatten" eigenlijk?</summary>
       <p>Sinds 1 januari 2026 staat dat alleen nog op het etiket als de fabrikant met een risicobeoordeling heeft aangetoond dat er reëel pinda-risico is. Dus: niet kopen voor het feest. Uitgebreidere uitleg staat <a href="#voor-je-ouder">in het stuk voor je ouder of verzorger</a> op deze pagina. (Bron: <a href="https://www.nvwa.nl/actueel/nieuws/2025/12/18/nvwa-start-in-2026-met-toezicht-etiketregels-allergeneninformatie" target="_blank" rel="noopener">NVWA</a>, <a href="https://www.voedselallergie.nl/nieuws/nvwa-start-in-2026-met-toezicht-nieuwe-etiketten/" target="_blank" rel="noopener">Stichting Voedselallergie</a>)</p>
     </details>
 
     <details class="faq">
-      <summary>Waar komt deze info vandaan?</summary>
-      <p>De inhoud is gebaseerd op interviews met een 13-jarige tiener met pinda-allergie en haar ouders, aangevuld met richtlijnen van Stichting Voedselallergie, NVWA, het Voedingscentrum en LUMC. Medisch gecheckt op basis van publieke kennisbronnen — bij twijfel: bel altijd 112 of raadpleeg een allergoloog.</p>
+      <summary>Mag iemand met een pinda-allergie producten met 'sporen van pinda' eten?</summary>
+      <p>Dit verschilt per persoon. Sommige mensen reageren op de kleinste sporen, terwijl anderen alleen bij directe consumptie klachten krijgen. Overleg altijd vooraf met de gast of de ouders welke stritheid zij hanteren.</p>
     </details>
+
+    <details class="faq">
+      <summary>Wat is het verschil tussen een pinda-allergie en een notenallergie?</summary>
+      <p>Een pinda is een peulvrucht die onder de grond groeit, terwijl noten (zoals walnoten of cashews) aan bomen groeien. Hoewel het verschillende allergieën zijn, komen ze vaak samen voor. Check daarom altijd beide bij je gast.</p>
+    </details>
+
+    <details class="faq">
+      <summary>Welke snacks en snoepjes zijn over het algemeen pindavrij?</summary>
+      <p>Veel puur snoepgoed (zoals winegums), zoute chips (naturel) en fruit zijn vaak veilig. Let op met chocolade, koekjes en oosterse snacks. Controleer altijd de ingrediëntenlijst op dikgedrukte allergenen.</p>
+    </details>
+
+    <details class="faq">
+      <summary>Hoe voorkom ik kruisbesmetting in mijn eigen keuken?</summary>
+      <p>Gebruik schone messen, snijplanken en serveerschalen. Een klein spoortje pindakaas aan een mes kan al een reactie veroorzaken. Was je handen grondig nadat je pinda-producten hebt aangeraakt.</p>
+    </details>
+
+    <details class="faq">
+      <summary>Wat moet ik doen bij een allergische reactie (anafylaxie)?</summary>
+      <p>Herken de signalen: benauwdheid, zwelling of flauwvallen. Gebruik direct de adrenaline-auto-injector (EpiPen) van de gast indien aanwezig en bel direct 112. Blijf altijd bij de persoon tot de hulpdiensten er zijn.</p>
+    </details>
+
   </section>
 
   <!-- BLOK 11: BRONNEN -->
@@ -1345,7 +1399,7 @@ footer a { color: var(--outline); }
 </main>
 
 <footer>
-  Gemaakt door Daan Turk · <a href="mailto:daanturk@gmail.com">Feedback? Mail me</a> · Versie 7.0
+  Gemaakt door Daan Turk · <a href="mailto:daanturk@gmail.com">Feedback? Mail me</a> · Versie 7.2
 </footer>
 </div>
 
@@ -1646,7 +1700,7 @@ document.getElementById('copy-link').addEventListener('click', function(){
 document.getElementById('copy-checklist').addEventListener('click', function(){
   var lines = [];
   document.querySelectorAll('.checklist-group').forEach(function(g){
-    var heading = g.querySelector('h4').textContent.trim();
+    var heading = g.querySelector('h3').textContent.trim();
     lines.push('');
     lines.push('— ' + heading + ' —');
     g.querySelectorAll('label').forEach(function(l){
