@@ -1,0 +1,10 @@
+#!/bin/sh
+# Automatically updates <lastmod> in sitemap.xml to today's date on each commit.
+
+SITEMAP="sitemap.xml"
+TODAY=$(date +%Y-%m-%d)
+
+if [ -f "$SITEMAP" ]; then
+  sed -i "s|<lastmod>.*</lastmod>|<lastmod>$TODAY</lastmod>|g" "$SITEMAP"
+  git add "$SITEMAP"
+fi
